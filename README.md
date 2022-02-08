@@ -1,2 +1,3 @@
 # SOMS
-Student Org Management System (SOMS). CSE3311 Project. 
+Student Org Management System (SOMS).
+CSE3311 Project. 

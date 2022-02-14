@@ -4,25 +4,20 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Login from './components/loginpage';
 import MainPage from './components/mainpage';
 
+
 //Firebase
 import { initializeApp } from 'firebase/app';
 //import { getDatabase } from "firebase/database";
 import { getDatabase, ref, set } from "firebase/database";
 
-function App() {
-    return ( <
-        Router >
-        <
-        Routes >
-        <
-        Route exact path = "/login"
-        element = { < Login / > }
-        /> <
-        Route exact path = "/home"
-        element = { < MainPage / > }
-        /> < /
-        Routes > <
-        /Router>
+const App = () => {
+    return ( 
+      <Router>
+          <Routes >
+            <Route exact path = "/login" element = { < Login/> }/>
+            <Route exact path = "/home" element = { < MainPage/> }/> 
+          </Routes> 
+      </Router>
     );
 }
 

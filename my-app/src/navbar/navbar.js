@@ -1,4 +1,6 @@
 import React from "react";
+import { Button, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@mui/material'
+
 import "./navbar.css";
 import {
     Navbar,
@@ -7,17 +9,20 @@ import {
 const navbar = () => {
     return (
         <div class="Body">
-            <div class = "home">
+            <div class="home">
                 <Nav.Link href="/home">
-                    <p>Home</p>
+                    <Button variant="outlined" >Home</Button>
                 </Nav.Link>
             </div>
-            <div class = "login">
+            <div class="login">
                 <Nav.Link href="/login">
-                    <p>Login</p>
+                    <Button variant="outlined" >Login</Button>
                 </Nav.Link>
             </div>
-        </div>
+            <div class="search">
+                <input type="text" class="input" placeholder="Find jobs"></input>
+            </div>
+        </div >
     );
-} 
+}
 export default navbar;

@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Navbar from './navbar';
 import Login from './components/loginpage';
 import MainPage from './components/mainpage';
 
@@ -13,10 +14,12 @@ import { getDatabase, ref, set } from "firebase/database";
 const App = () => {
     return ( 
       <Router>
+        <Navbar>
           <Routes >
             <Route exact path = "/login" element = { < Login/> }/>
             <Route exact path = "/home" element = { < MainPage/> }/> 
-          </Routes> 
+          </Routes>
+        </Navbar> 
       </Router>
     );
 }

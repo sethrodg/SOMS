@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Navbar from './navbar/navbar';
 import Login from './components/loginpage';
 import MainPage from './components/mainpage';
 
@@ -11,22 +12,23 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set } from "firebase/database";
 
 const App = () => {
-    return ( 
-      <Router>
-          <Routes >
-            <Route exact path = "/login" element = { < Login/> }/>
-            <Route exact path = "/home" element = { < MainPage/> }/> 
-          </Routes> 
-      </Router>
-    );
+  return (
+    <Router>
+      <Navbar />
+      <Routes >
+        <Route exact path="/login" element={< Login />} />
+        <Route exact path="/home" element={< MainPage />} />
+      </Routes>
+    </Router>
+  );
 }
 
 
 //Configure Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyDdSTvLk9KzL3GkBSFOoTX7DS9PaqqIqaU",
-    authDomain: "soms-409ff.firebaseapp.com",
-    databaseURL: "https://soms-409ff-default-rtdb.firebaseio.com",
+  apiKey: "AIzaSyDdSTvLk9KzL3GkBSFOoTX7DS9PaqqIqaU",
+  authDomain: "soms-409ff.firebaseapp.com",
+  databaseURL: "https://soms-409ff-default-rtdb.firebaseio.com",
 };
 const app = initializeApp(firebaseConfig);
 
@@ -34,10 +36,10 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 function writeUserData(userId, name, email) {
-    set(ref(db, 'users/' + userId), {
-        username: name,
-        email: email
-    });
+  set(ref(db, 'users/' + userId), {
+    username: name,
+    email: email
+  });
 }
 writeUserData("sar2402", "Seth", "sethallenrodgers@gmail.com")
 

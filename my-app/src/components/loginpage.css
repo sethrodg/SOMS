@@ -1,16 +1,3 @@
-.Background{
-    display:flex;
-    flex-direction:column;
-}
-.loginpage{
-    display:flex;
-    flex-direction:column;
-}
-.loginform{
-    display:flex;
-    flex-direction:column;
-}
-.signupform{
-    display:flex;
-    flex-direction:column;
+.signupbutton{
+    margin: auto;
 }

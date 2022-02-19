@@ -21,7 +21,7 @@ const SignUp = () => {
   const register = () => {
     if (!name) alert("Please enter name");
     registerWithEmailAndPassword(name, email, password);
-//   };
+};
   // const letterStyle={
   //     width: '100%',
   //     text-align: 'center',

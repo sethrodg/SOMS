@@ -1,7 +1,6 @@
 import { Avatar, Button, Checkbox, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@mui/material'
 import React from 'react'
 import { Google } from '@mui/icons-material';
-import "./loginpage.css"
 const Login = () => {
 
     const paperStyle = { padding: 20, height: '70vh', width: 400, margin: "20px auto" }

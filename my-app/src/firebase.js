@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
+import { getDatabase, ref, set } from "firebase/database";
 import {
   GoogleAuthProvider,
   getAuth,
@@ -20,10 +21,15 @@ import {
   addDoc,
 } from "firebase/firestore";
 // Your web app's Firebase configuration
-const firebaseConfig = {
+  const firebaseConfig = {
     apiKey: "AIzaSyDdSTvLk9KzL3GkBSFOoTX7DS9PaqqIqaU",
     authDomain: "soms-409ff.firebaseapp.com",
     databaseURL: "https://soms-409ff-default-rtdb.firebaseio.com",
+    projectId: "soms-409ff",
+    storageBucket: "soms-409ff.appspot.com",
+    messagingSenderId: "957818394464",
+    appId: "1:957818394464:web:96e43c86236088bd1db005",
+    measurementId: "G-VNY14WEXDG"
   };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);

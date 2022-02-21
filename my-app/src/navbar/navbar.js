@@ -19,6 +19,11 @@ const navbar = () => {
                     <Button variant="outlined" >Login</Button>
                 </Nav.Link>
             </div>
+            <div class="signup">
+                <Nav.Link href="/signup">
+                    <Button variant="outlined" >signup</Button>
+                </Nav.Link>
+            </div>
             <div class="search">
                 <input type="text" class="input" placeholder="Find jobs"></input>
             </div>

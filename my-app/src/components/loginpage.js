@@ -1,7 +1,7 @@
 import { Avatar, Button, Checkbox, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { Google } from '@mui/icons-material';
-import { registerWithEmailAndPassword } from '../firebase';
+import { logInWithEmailAndPassword } from '../firebase';
 const Login = () => {
 
     const paperStyle = { padding: 20, height: '70vh', width: 400, margin: "20px auto" }
@@ -11,8 +11,11 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const log = () => {
-        if (!name) alert("Please enter name");
-    registerWithEmailAndPassword(name, email, password);
+        if (!email) alert("Please enter email");
+        if (logInWithEmailAndPassword(email, password))
+        {
+            window.location.href = window.location.protocol + "//" + window.location.host + "/home";
+        }
     };
     return (
         <Grid container style={{ minHeight: '100vh' }}>
@@ -21,21 +24,11 @@ const Login = () => {
             <Grid item xs={12} sm={6}>
                 <Paper sx={{ borderRadius: 10 }} elevation={10} style={paperStyle}>
                     <Grid align='center'>
-                        <h1>Welcome to SOMS</h1>
+                        <h1>Login to SOMS</h1>
                     </Grid>
                     <Typography>
-                        Username
+                        Email
                     </Typography>
-                    <input
-                        type="text"
-                        className="register__textBox"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Full Name"
-                        style={textStyle}
-                        variant="outlined"
-                        fullWidth required
-                    />
                     <input
                         type="text"
                         className="register__textBox"
@@ -64,7 +57,7 @@ const Login = () => {
                             Forgot Password
                         </Link>
                     </Typography>
-                    <Button  type='Submit' color='primary' variant="contained" onClick = {log} style={btnstyle} fullWidth>Log In</Button>
+                    <Button color='primary' variant="contained" onClick = {log} style={btnstyle} fullWidth>Log In</Button>
                     <hr></hr>
                     <Typography> Don't have an account yet?
                         <div class="signupbutton">

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Navbar from './navbar/navbar';
 import Login from './components/loginpage';
 import MainPage from './components/mainpage';
-//import SignUp from './components/signup';
+import SignUp from './components/signup';
 
 const App = () => {
   return (
@@ -13,7 +13,7 @@ const App = () => {
         <Routes >
           <Route exact path="/login" element={< Login />} />
           <Route exact path="/home" element={< MainPage />} />
-          {/* <Route exact path="/signup" element={< SignUp />} /> */}
+          <Route exact path="/signup" element={< SignUp />} />
         </Routes>
     </Router>
   );

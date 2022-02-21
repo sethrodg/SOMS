@@ -12,11 +12,9 @@ import {
 
 const SignUp = () => {
   const paperStyle = { padding: 20, height: '70vh', width: 380, margin: "20px auto" }
-  const avatarStyle = { backgroundColor: '#7D77FF' }
   const btnstyle = { backgroundColor: '#F89286', margin: '8px 0px' }
   const textStyle = { margin: '8px 0px' }
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const register = () => {
@@ -26,14 +24,11 @@ const SignUp = () => {
   return (
     <Grid container style={{ minHeight: '100vh' }}>
       <Grid item xs={12} sm={6} style={{ align: 'center' }}>
-        <img src="/img/fitcheck-heading.png" />
-        <img src="/img/login-img.png" />
       </Grid>
       <Grid item xs={12} sm={6}>
         <Paper sx={{ borderRadius: 10 }} elevation={10} style={paperStyle}>
           <Grid align='center'>
-            <Avatar style={avatarStyle}><LockOutlinedIcon /></Avatar>
-            <h1>Welcome to FitCheck</h1>
+            <h1>Welcome to SOMS</h1>
           </Grid>
           <div className='row'>
             <input
@@ -42,16 +37,6 @@ const SignUp = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Full Name"
-              style={textStyle}
-              variant="outlined"
-              fullWidth required
-            />
-            <input
-              type="text"
-              className="register__textBox"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Username"
               style={textStyle}
               variant="outlined"
               fullWidth required
@@ -86,7 +71,7 @@ const SignUp = () => {
             }
             label="Remember me"
           />
-          <Button type='Submit' color='primary' variant="contained" style={btnstyle} onClick={register} fullWidth>Let's Go!</Button>
+          <Button type='Submit' color='primary' variant="contained" style={btnstyle} onClick={register} fullWidth>Register!</Button>
           <Button variant="outlined" startIcon={<Google />} onClick={signInWithGoogle}>Sign Up with Google</Button>
         </Paper>
       </Grid>

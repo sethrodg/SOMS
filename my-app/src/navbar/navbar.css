@@ -17,6 +17,12 @@
     box-shadow: 2px 2px 2px rgb(61, 61, 61);
     margin: 2%;
 }
+.signup{
+    background-color: aliceblue;
+    border-radius: 2%;
+    box-shadow: 2px 2px 2px rgb(61, 61, 61);
+    margin: 2%;
+}
 .search{
     border-radius: 2%;
     margin: 2%;

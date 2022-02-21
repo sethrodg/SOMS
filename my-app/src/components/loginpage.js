@@ -9,7 +9,6 @@ const Login = () => {
     const textStyle = { margin: '8px 0px' }
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [name, setName] = useState("");
     const log = () => {
         if (!email) alert("Please enter email");
         if (logInWithEmailAndPassword(email, password))

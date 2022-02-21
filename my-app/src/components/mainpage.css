@@ -8,8 +8,35 @@
     padding: 0px;
 }
 .joblist{
-  background-color: aliceblue;
+  background-color: ffffff;
 }
 .jobdetail{
-  background-color: aliceblue;
+  background-color: ffffff;
+}
+.mainpage__header{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 0px;
+}
+.mainpage__body{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 0px;
+}
+.mainpage__content{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 0px;
 }

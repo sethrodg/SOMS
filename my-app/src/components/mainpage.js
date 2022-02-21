@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./mainpage.css";
-
 const MainPage = () => {
     return (
         /*create a job board */
         <div class="mainpage">
+            <div class="mainpage__body">
+            <div class="mainpage__header">
+                <h1>Welcome </h1>
+            </div>
+            <div class="mainpage__content">
             <div class="joblist">
                 <ul>
                     <p>Job One</p>
@@ -62,6 +66,8 @@ const MainPage = () => {
                     </div>
                 </div>
             </div> */}
+            </div>
+            </div>
         </div>
     );
 }

@@ -27,3 +27,9 @@
     border-radius: 2%;
     margin: 2%;
 }
+.logout{
+    background-color: aliceblue;
+    border-radius: 2%;
+    box-shadow: 2px 2px 2px rgb(61, 61, 61);
+    margin: 2%;
+}

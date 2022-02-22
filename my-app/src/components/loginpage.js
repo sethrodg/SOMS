@@ -32,6 +32,7 @@ const Login = () => {
     return (
         <Grid container style={{ minHeight: '100vh' }}>
             <Grid item xs={12} sm={6} style={{ align: 'center' }}>
+            <img src="utalogo.png"/>
             </Grid>
             <Grid item xs={12} sm={6}>
                 <Paper sx={{ borderRadius: 10 }} elevation={10} style={paperStyle}>
@@ -78,7 +79,7 @@ const Login = () => {
                             </Link>
                         </div>
                     </Typography>
-                    <Button variant="outlined" startIcon={<Google />} >Continue with Google</Button>
+                    <Button variant="outlined" startIcon={<Google />} onClick={signInWithGoogle} >Continue with Google</Button>
                 </Paper>
             </Grid>
         </Grid>

@@ -5,8 +5,12 @@ import {
     auth,
     signInWithGoogle,
     logInWithEmailAndPassword,
+<<<<<<< HEAD
     sendPasswordReset
   } from '../firebase';
+=======
+} from '../firebase';
+>>>>>>> 6c9a1d754a0ed317ce8509398140f2a95af2d6c3
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,11 +25,11 @@ const Login = () => {
     const navigate = useNavigate();
     useEffect(() => {
         if (loading) {
-          // maybe trigger a loading screen
-          return;
+            // maybe trigger a loading screen
+            return;
         }
-        if (user) navigate("/home");
-      }, [user, loading]);
+        if (user) navigate("/");
+    }, [user, loading]);
     const log = () => {
         if (!email) alert("Please enter email");
         logInWithEmailAndPassword(email, password);
@@ -37,7 +41,7 @@ const Login = () => {
     return (
         <Grid container style={{ minHeight: '100vh' }}>
             <Grid item xs={12} sm={6} style={{ align: 'center' }}>
-                <img src="utalogo.png"/>
+                <img src="utalogo.png" />
             </Grid>
             <Grid item xs={12} sm={6}>
                 <Paper sx={{ borderRadius: 10 }} elevation={10} style={paperStyle}>
@@ -75,7 +79,7 @@ const Login = () => {
                             Forgot Password
                         </Link>
                     </Typography>
-                    <Button color='primary' variant="contained" onClick = {log} style={btnstyle} fullWidth>Log In</Button>
+                    <Button color='primary' variant="contained" onClick={log} style={btnstyle} fullWidth>Log In</Button>
                     <hr></hr>
                     <Typography> Don't have an account yet?
                         <div class="signupbutton">

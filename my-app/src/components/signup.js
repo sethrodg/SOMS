@@ -9,6 +9,8 @@ import {
   registerWithEmailAndPassword,
   signInWithGoogle,
 } from '../firebase'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const paperStyle = { padding: 20, height: '70vh', width: 380, margin: "20px auto" }
@@ -17,6 +19,15 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
+  useEffect(() => {
+      if (loading) {
+        // maybe trigger a loading screen
+        return;
+      }
+      if (user) navigate("/home");
+    }, [user, loading]);
   const register = () => {
     if (!name) alert("Please enter name");
     registerWithEmailAndPassword(name, email, password);

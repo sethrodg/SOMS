@@ -1,7 +1,14 @@
 import { Avatar, Button, Checkbox, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { Google } from '@mui/icons-material';
-import { logInWithEmailAndPassword } from '../firebase';
+import {
+    auth,
+    signInWithGoogle,
+    logInWithEmailAndPassword,
+  } from '../firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
+
 const Login = () => {
 
     const paperStyle = { padding: 20, height: '70vh', width: 400, margin: "20px auto" }
@@ -9,12 +16,18 @@ const Login = () => {
     const textStyle = { margin: '8px 0px' }
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [user, loading, error] = useAuthState(auth);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (loading) {
+          // maybe trigger a loading screen
+          return;
+        }
+        if (user) navigate("/home");
+      }, [user, loading]);
     const log = () => {
         if (!email) alert("Please enter email");
-        if (logInWithEmailAndPassword(email, password))
-        {
-            window.location.href = window.location.protocol + "//" + window.location.host + "/home";
-        }
+        logInWithEmailAndPassword(email, password);
     };
     return (
         <Grid container style={{ minHeight: '100vh' }}>

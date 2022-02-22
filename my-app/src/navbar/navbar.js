@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@mui/material'
-import {logout}  from "../firebase";
+import { logout } from "../firebase";
 import "./navbar.css";
 import {
     Navbar,
@@ -31,8 +31,8 @@ const navbar = () => {
                 <input type="text" class="input" placeholder="Find jobs"></input>
             </div>
             <div class="logout">
-                <Nav.Link href="/home">
-                    <Button variant="outlined" onClick = {logO} >Log out</Button>
+                <Nav.Link href="/">
+                    <Button variant="outlined" onClick={logO} >Log out</Button>
                 </Nav.Link>
             </div>
         </div >

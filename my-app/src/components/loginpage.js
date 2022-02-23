@@ -5,6 +5,7 @@ import {
     auth,
     signInWithGoogle,
     logInWithEmailAndPassword,
+    sendPasswordReset
   } from '../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
@@ -20,14 +21,19 @@ const Login = () => {
     const navigate = useNavigate();
     useEffect(() => {
         if (loading) {
-          // maybe trigger a loading screen
-          return;
+            // maybe trigger a loading screen 
+            //testing commit
+            return;
         }
-        if (user) navigate("/home");
-      }, [user, loading]);
+        if (user) navigate("/");
+    }, [user, loading]);
     const log = () => {
         if (!email) alert("Please enter email");
         logInWithEmailAndPassword(email, password);
+    };
+    const reset = () => {
+        if (!email) alert("Please enter email");
+        sendPasswordReset(email);
     };
     return (
         <Grid container style={{ minHeight: '100vh' }}>
@@ -66,11 +72,11 @@ const Login = () => {
                         fullWidth required
                     />
                     <Typography>
-                        <Link align='right' href='#'>
+                        <Link align='right' onClick={reset}>
                             Forgot Password
                         </Link>
                     </Typography>
-                    <Button color='primary' variant="contained" onClick = {log} style={btnstyle} fullWidth>Log In</Button>
+                    <Button color='primary' variant="contained" onClick={log} style={btnstyle} fullWidth>Log In</Button>
                     <hr></hr>
                     <Typography> Don't have an account yet?
                         <div class="signupbutton">

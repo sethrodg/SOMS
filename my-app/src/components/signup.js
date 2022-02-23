@@ -23,16 +23,16 @@ const SignUp = () => {
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
   useEffect(() => {
-      if (loading) {
-        // maybe trigger a loading screen
-        return;
-      }
-      if (user) navigate("/home");
-    }, [user, loading]);
+    if (loading) {
+      // maybe trigger a loading screen
+      return;
+    }
+    if (user) navigate("/");
+  }, [user, loading]);
   const register = () => {
     if (!name) alert("Please enter name");
     registerWithEmailAndPassword(name, email, password);
-};
+  };
   return (
     <Grid container style={{ minHeight: '100vh' }}>
       <Grid item xs={12} sm={6} style={{ align: 'center' }}>

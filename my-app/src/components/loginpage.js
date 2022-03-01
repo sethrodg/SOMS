@@ -5,12 +5,8 @@ import {
     auth,
     signInWithGoogle,
     logInWithEmailAndPassword,
-<<<<<<< HEAD
-    sendPasswordReset
-  } from '../firebase';
-=======
+    sendPasswordReset,
 } from '../firebase';
->>>>>>> 6c9a1d754a0ed317ce8509398140f2a95af2d6c3
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 

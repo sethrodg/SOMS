@@ -13,7 +13,7 @@ const navbar = () => {
     return (
         <div class="Body">
             <div class="home">
-                <Nav.Link href="/home">
+                <Nav.Link href="/">
                     <Button variant="outlined" >Home</Button>
                 </Nav.Link>
             </div>

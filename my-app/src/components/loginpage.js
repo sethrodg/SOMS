@@ -5,7 +5,7 @@ import {
     auth,
     signInWithGoogle,
     logInWithEmailAndPassword,
-    sendPasswordReset,
+    sendPasswordReset
 } from '../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
@@ -21,7 +21,8 @@ const Login = () => {
     const navigate = useNavigate();
     useEffect(() => {
         if (loading) {
-            // maybe trigger a loading screen
+            // maybe trigger a loading screen 
+            //testing commit
             return;
         }
         if (user) navigate("/");
@@ -84,7 +85,7 @@ const Login = () => {
                             </Link>
                         </div>
                     </Typography>
-                    <Button variant="outlined" startIcon={<Google />} onClick={signInWithGoogle}>Continue with Google</Button>
+                    <Button variant="outlined" startIcon={<Google />} onClick={signInWithGoogle} >Continue with Google</Button>
                 </Paper>
             </Grid>
         </Grid>

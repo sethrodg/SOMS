@@ -12,6 +12,7 @@ import {
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 
+
 const SignUp = () => {
   const paperStyle = { padding: 20, height: '70vh', width: 380, margin: "20px auto" }
   const btnstyle = { backgroundColor: '#F89286', margin: '8px 0px' }
@@ -35,7 +36,7 @@ const SignUp = () => {
   return (
     <Grid container style={{ minHeight: '100vh' }}>
       <Grid item xs={12} sm={6} style={{ align: 'center' }}>
-        <img src="utalogo.png" />
+        <img src="utalogo.png"/>
       </Grid>
       <Grid item xs={12} sm={6}>
         <Paper sx={{ borderRadius: 10 }} elevation={10} style={paperStyle}>

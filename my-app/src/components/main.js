@@ -19,6 +19,12 @@ function Pop() {
                 </div>
                 <div className="pop_main">
                     <Carousel breakPoints={breakPoints} pagination="false">
+                        <div className="Card">
+                            <img src={Data[0].image} />
+                            <h3>{Data[0].name}</h3>
+                            <p>{Data[0].link}</p>
+                            <h6>{Data[0].description}</h6>
+                        </div>
                         <Card
                             image={Data[0].image}
                             name={Data[0].name}

@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react'
 import './style.css';
 import Data from './data';
 import Carousel from "react-elastic-carousel";
 import './main.css'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import {
+    auth,
+  } from '../firebase';
 const breakPoints = [
     { width: 1, itemsToShow: 1, pagination: false },
     { width: 0, itemsToShow: 2, itemsToScroll: 2, pagination: false },
@@ -10,11 +14,17 @@ const breakPoints = [
     { width: 0, itemsToShow: 5, pagination: false }
 ];
 function Pop() {
+    const [user, loading, error] = useAuthState(auth);
+    if (user){
+        var email = user.email;
+        var name = user.displayName;
+        console.log(name, email);
+    }
     return (
         <>
             <div className="filloutpage">
                 <div>
-                    <h3 className="pop_nf_h3">Recommended for you</h3>
+                    <h3 className="pop_nf_h3">Recommended for </h3>
                 </div>
                 <div className="pop_main">
                     <Carousel breakPoints={breakPoints} pagination="false">

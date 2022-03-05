@@ -15,17 +15,24 @@ const breakPoints = [
 ];
 function Pop() {
     const [user, loading, error] = useAuthState(auth);
-    if (user){
+    if (user){ //check if user is logged in
         var email = user.email;
         var name = user.displayName;
         var info = user;
+        var Welcome = "Welcome " + email;
         console.log(name, email, info);
+    }
+    else{ //if not logged in
+        var Welcome = "Welcome Guest";
+        var email = "";
+        var name = "";
+        var info = "";
     }
     return (
         <>
             <div className="filloutpage">
                 <div>
-                    <h3 className="pop_nf_h3">Recommended for {email}</h3>
+                    <h3 className="pop_nf_h3">{Welcome}</h3>
                 </div>
                 <div className="pop_main">
                     <Carousel breakPoints={breakPoints} pagination="false">

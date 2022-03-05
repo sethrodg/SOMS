@@ -18,13 +18,14 @@ function Pop() {
     if (user){
         var email = user.email;
         var name = user.displayName;
-        console.log(name, email);
+        var info = user;
+        console.log(name, email, info);
     }
     return (
         <>
             <div className="filloutpage">
                 <div>
-                    <h3 className="pop_nf_h3">Recommended for </h3>
+                    <h3 className="pop_nf_h3">Recommended for {email}</h3>
                 </div>
                 <div className="pop_main">
                     <Carousel breakPoints={breakPoints} pagination="false">

@@ -24,7 +24,7 @@ import {
   const firebaseConfig = {
     apiKey: "AIzaSyDdSTvLk9KzL3GkBSFOoTX7DS9PaqqIqaU",
     authDomain: "soms-409ff.firebaseapp.com",
-    //databaseURL: "https://soms-409ff-default-rtdb.firebaseio.com",
+    databaseURL: "https://soms-409ff-default-rtdb.firebaseio.com",
     projectId: "soms-409ff",
     storageBucket: "soms-409ff.appspot.com",
     messagingSenderId: "957818394464",

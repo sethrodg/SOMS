@@ -1,41 +1,35 @@
 .Body{
-    background-color: rgb(255, 255, 255);
+    background-color: aquamarine;
     display: flex;
     flex-direction: row;
+    border-radius: 3%;
     justify-content: center;
-    margin-bottom: auto;
-    width: auto;
 }
 .home{
     background-color: aliceblue;
     border-radius: 2%;
     box-shadow: 2px 2px 2px rgb(61, 61, 61);
     margin: 2%;
-    size: auto;
 }
 .login{
     background-color: aliceblue;
     border-radius: 2%;
     box-shadow: 2px 2px 2px rgb(61, 61, 61);
     margin: 2%;
-    size: auto;
 }
 .signup{
     background-color: aliceblue;
     border-radius: 2%;
     box-shadow: 2px 2px 2px rgb(61, 61, 61);
     margin: 2%;
-    size: auto;
 }
 .search{
     border-radius: 2%;
     margin: 2%;
-    size: auto;
 }
 .logout{
     background-color: aliceblue;
     border-radius: 2%;
     box-shadow: 2px 2px 2px rgb(61, 61, 61);
     margin: 2%;
-    size: auto;
 }

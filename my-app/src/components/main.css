@@ -13,17 +13,3 @@
     display: flex;
     height: 100%;
 }
-.Card{
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 100%;
-    transition: all .2s ease-in-out;
-    justify-items: center;
-    text-align: center;
-}
-.Card:hover{
-    background-color: rgb(238, 238, 238);
-    transform: scale(1.1);
-}

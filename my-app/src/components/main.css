@@ -1,0 +1,15 @@
+.pop_nf_h3{
+    display: flex;
+    justify-content: center;
+}
+.filloutpage{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+}
+.pop_main{
+    display: flex;
+    height: 100%;
+}

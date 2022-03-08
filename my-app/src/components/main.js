@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import { Avatar, Button, Checkbox, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@mui/material'
+import React, { useEffect, useState } from 'react';
 import './style.css';
 import Data from './data';
 import Carousel from "react-elastic-carousel";
@@ -6,7 +7,8 @@ import './main.css'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
     auth,
-  } from '../firebase';
+    createTask,
+} from '../firebase';
 const breakPoints = [
     { width: 1, itemsToShow: 1, pagination: false },
     { width: 0, itemsToShow: 2, itemsToScroll: 2, pagination: false },
@@ -15,14 +17,23 @@ const breakPoints = [
 ];
 function Pop() {
     const [user, loading, error] = useAuthState(auth);
-    if (user){ //check if user is logged in
+    const [taskName, settaskName] = useState("");
+    const [description, setdescription] = useState("");
+    const [members, setmembers] = useState("");
+    if (user) { //check if user is logged in
         var email = user.email;
         var name = user.displayName;
         var info = user;
+        var admin = false;
+        if (email.slice(-8).includes("@uta.edu")) {
+            //checks to see if the last characters have the correct email for admin privledges
+            console.log(email.slice(-8));
+            admin = true;
+        }
+        console.log(admin, name, email, info);
         var Welcome = "Welcome " + email;
-        console.log(name, email, info);
     }
-    else{ //if not logged in
+    else { //if not logged in
         var Welcome = "Welcome Guest";
         var email = "";
         var name = "";
@@ -115,6 +126,26 @@ function Pop() {
                             <h6>{Data[12].description}</h6>
                         </div>
                     </Carousel>
+                </div>
+                <div className="Tasking">
+                    <Button variant="outlined" name="addTaskBtn">Create Task</Button>
+                    <input
+                        type="text"
+                        className="createTask_textBox"
+                        value={taskName}
+                        onChange={(e) => settaskName(e.target.value)}
+                        placeholder="Enter Task Name"
+                    />
+                    {/* <input
+                        type="text"
+                        className="createTask__textBox"
+                        value={taskName}
+                        onChange={(e) => settaskName(e.target.value)}
+                        placeholder="Task"
+                        style={textStyle}
+                        variant="outlined"
+                        fullWidth required
+                    /> */}
                 </div>
             </div>
         </>

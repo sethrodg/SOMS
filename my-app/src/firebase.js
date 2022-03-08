@@ -19,18 +19,19 @@ import {
   collection,
   where,
   addDoc,
+  setDoc,
 } from "firebase/firestore";
 // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyDdSTvLk9KzL3GkBSFOoTX7DS9PaqqIqaU",
-    authDomain: "soms-409ff.firebaseapp.com",
-    //databaseURL: "https://soms-409ff-default-rtdb.firebaseio.com",
-    projectId: "soms-409ff",
-    storageBucket: "soms-409ff.appspot.com",
-    messagingSenderId: "957818394464",
-    appId: "1:957818394464:web:96e43c86236088bd1db005",
-    measurementId: "G-VNY14WEXDG"
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyDdSTvLk9KzL3GkBSFOoTX7DS9PaqqIqaU",
+  authDomain: "soms-409ff.firebaseapp.com",
+  //databaseURL: "https://soms-409ff-default-rtdb.firebaseio.com",
+  projectId: "soms-409ff",
+  storageBucket: "soms-409ff.appspot.com",
+  messagingSenderId: "957818394464",
+  appId: "1:957818394464:web:96e43c86236088bd1db005",
+  measurementId: "G-VNY14WEXDG"
+};
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -77,6 +78,14 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     alert(err.message);
   }
 };
+const createTask = async (TaskName, description, members) => {
+  await setDoc(doc(db, "tasks", TaskName)), {
+    name: TaskName,
+    description: description,
+    members: members
+  }
+};
+
 const sendPasswordReset = async (email) => {
   try {
     await sendPasswordResetEmail(auth, email);
@@ -97,4 +106,5 @@ export {
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
+  createTask,
 };

@@ -1,6 +1,5 @@
 import { Avatar, Button, Checkbox, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import LockOutlinedIcon from '@mui/icons-material/Lock';
 import { Google } from '@mui/icons-material';
 //import { Link, useNavigate } from "react-router-dom"
 import "././signup.css"
@@ -36,7 +35,7 @@ const SignUp = () => {
   return (
     <Grid container style={{ minHeight: '100vh' }}>
       <Grid item xs={12} sm={6} style={{ align: 'center' }}>
-        <img src="utalogo.png"/>
+        <img src="utalogo.png" />
       </Grid>
       <Grid item xs={12} sm={6}>
         <Paper sx={{ borderRadius: 10 }} elevation={10} style={paperStyle}>

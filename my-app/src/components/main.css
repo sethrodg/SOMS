@@ -9,6 +9,10 @@
     justify-content: center;
     min-height: 100%;
 }
+.Tasking{
+    display: flex;
+    justify-content: center;
+}
 .pop_main{
     display: flex;
     height: 100%;

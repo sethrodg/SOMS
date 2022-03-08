@@ -1,5 +1,7 @@
 import { Avatar, Button, Checkbox, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react';
+import { doc, onSnapshot, collection, query, where } from "firebase/firestore";
+import { db } from '../firebase';
 import './style.css';
 import Data from './data';
 import Carousel from "react-elastic-carousel";
@@ -16,13 +18,22 @@ const breakPoints = [
     { width: 0, itemsToShow: 5, pagination: false }
 ];
 function Pop() {
-    const [user, loading, error] = useAuthState(auth);
+    var username = "";
+    useEffect(() => {
+        const q = query(collection(db, "users"))
+        const unsub = onSnapshot(q, (querySnapshot) => {
+            console.log("Data", querySnapshot.docs.map(doc => doc.data()));
+            console.log("Query", querySnapshot.docs.map(doc));
+            const q2 = query(collection(db, "users"), where("email", "==",));
+        });
+    }, [])
+    const [user] = useAuthState(auth);
     const [taskName, settaskName] = useState("");
     const [description, setdescription] = useState("");
     const [members, setmembers] = useState("");
     if (user) { //check if user is logged in
         var email = user.email;
-        var name = user.displayName;
+        var name = user.name;
         var info = user;
         var admin = false;
         if (email.slice(-8).includes("@uta.edu")) {

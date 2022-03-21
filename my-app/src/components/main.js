@@ -9,8 +9,11 @@ import './main.css'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
     auth,
-    createTask,
+    createSystem,
+    createJob,
 } from '../firebase';
+import { style } from '@mui/system';
+import { contains } from '@firebase/util';
 const breakPoints = [
     { width: 1, itemsToShow: 1, pagination: false },
     { width: 0, itemsToShow: 2, itemsToScroll: 2, pagination: false },
@@ -18,26 +21,45 @@ const breakPoints = [
     { width: 0, itemsToShow: 5, pagination: false }
 ];
 function Pop() {
-    var username = "";
-    useEffect(() => {
-        const q = query(collection(db, "users"))
-        const unsub = onSnapshot(q, (querySnapshot) => {
-            console.log("Data", querySnapshot.docs.map(doc => doc.data()));
-            console.log("Query", querySnapshot.docs.map(doc));
-            const q2 = query(collection(db, "users"), where("email", "==",));
+    let select = document.getElementById("selectSystems"); //Will appear twice in the dropdown
+    const s = query(collection(db, "Systems"))
+    const unsubb = onSnapshot(s, (querySnapshot) => {
+        const response = querySnapshot.docs.map(doc => doc.data());
+        response.forEach(element => {
+            var opt = element.name;
+            var el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            if((el.value || el.textContent) in select){
+                //pass
+            }
+            else{
+                select.appendChild(el);
+            }
         });
-    }, [])
+    });
     const [user] = useAuthState(auth);
-    const [taskName, settaskName] = useState("");
-    const [SystemLeadName, setSystemLeadName] = useState("");
-    const [InterestedUsers, setInterstedUsers] = useState("");
-    const CreateT = () => {
-        if (!taskName || !SystemLeadName || !InterestedUsers) 
+    const [SystemName, setSystemName] = useState("");
+    const [SystemLead, setSystemLead] = useState("");
+    
+
+    const [SystemJobName, setSystemJobName] = useState("");
+    const[Information, setInformation] = useState("");
+    const [Deadline, setDeadline] = useState("");
+    const CreateS = () => {
+        if (!SystemName || !SystemLead) 
+        {
+            alert("Please enter all the fields");
+        }
+        createSystem(SystemName, SystemLead);
+    }
+    const CreateJ = () => {
+        if (!Deadline || !SystemJobName || !Information) 
         {
             alert("Please enter all the fields");
         } 
-        createTask(taskName, SystemLeadName, InterestedUsers);
-      };
+        createJob(SystemJobName, Information, Deadline);
+    };
     if (user) { //check if user is logged in
         var email = user.email;
         var name = user.name;
@@ -45,10 +67,9 @@ function Pop() {
         var admin = false;
         if (email.slice(-8).includes("@uta.edu")) {
             //checks to see if the last characters have the correct email for admin privledges
-            console.log(email.slice(-8));
             admin = true;
         }
-        console.log(admin, name, email, info);
+        //console.log(admin, name, email, info);
         var Welcome = "Welcome " + email;
     }
     else { //if not logged in
@@ -146,38 +167,49 @@ function Pop() {
                     </Carousel>
                 </div>
                 <div className="Tasking">
-                    <Button variant="outlined" name="addTaskBtn" onClick={CreateT}>Create Task</Button>
+                    <Button variant="outlined" name="addTaskBtn" onClick={CreateS}>Create System</Button>
                     <input
                         type="text"
                         className="createTask_textBox"
-                        value={taskName}
-                        onChange={(e) => settaskName(e.target.value)}
-                        placeholder="Enter Task Name"
+                        value={SystemName}
+                        onChange={(e) => setSystemName(e.target.value)}
+                        placeholder="Enter System Name"
                     />
                     <input
                         type="text"
                         className="createTask_textBox"
-                        value={SystemLeadName}
-                        onChange={(e) => setSystemLeadName(e.target.value)}
-                        placeholder="Enter System Lead's Name"
+                        value={SystemLead}
+                        onChange={(e) => setSystemLead(e.target.value)}
+                        placeholder="Enter System Lead Name"
+                    />
+                </div>
+                <div className="Jobs">
+                    <Button variant="outlined" name="addTaskBtn" onClick={CreateJ}>Create Job</Button>
+                    <select id = "selectSystems">  
+                        <option> ---Choose System--- </option>
+                    </select>
+                    
+                    <input
+                        type="text"
+                        className="createTask_textBox"
+                        value={SystemJobName}
+                        onChange={(e) => setSystemJobName(e.target.value)}
+                        placeholder="Enter Job Name"
                     />
                     <input
                         type="text"
                         className="createTask_textBox"
-                        value={InterestedUsers}
-                        onChange={(e) => setInterstedUsers(e.target.value)}
-                        placeholder="Enter Interested User's Names"
+                        value={Information}
+                        onChange={(e) => setInformation(e.target.value)}
+                        placeholder="Enter Job Information"
                     />
-                    {/* <input
+                    <input
                         type="text"
-                        className="createTask__textBox"
-                        value={taskName}
-                        onChange={(e) => settaskName(e.target.value)}
-                        placeholder="Task"
-                        style={textStyle}
-                        variant="outlined"
-                        fullWidth required
-                    /> */}
+                        className="createTask_textBox"
+                        value={Deadline}
+                        onChange={(e) => setDeadline(e.target.value)}
+                        placeholder="Enter Due Date"
+                    />
                 </div>
             </div>
         </>

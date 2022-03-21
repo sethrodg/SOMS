@@ -21,6 +21,7 @@ import {
   addDoc,
   setDoc,
 } from "firebase/firestore";
+import { Info } from "@mui/icons-material";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDdSTvLk9KzL3GkBSFOoTX7DS9PaqqIqaU",
@@ -78,25 +79,31 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     alert(err.message);
   }
 };
-const createTask = async (TaskName, Sname, Iusers) => {
+const createSystem = async (SystemName, Sname) => {
   try {
-    await addDoc(collection(db, "tasks"), {
-      name: TaskName,
+    await addDoc(collection(db, "Systems"), {
+      name: SystemName,
       SystemLead: Sname,
-      InterestedUsers: Iusers
     });
   } catch (err) {
     console.error(err);
     alert(err.message);
   }
 }
-// function createTask(TaskName, Sname, Iusers) {
-//   firebase.database().ref('tasks').set({
-//     Name: TaskName,
-//     SystemLeadName: Sname,
-//     InterestedUsers : Iusers
-//   });
-// }
+
+const createJob = async (Sname, Jname, info, date) => {
+  try {
+    await addDoc(collection(db, "Job"), {
+      SystemName: Sname,
+      JobName: Jname,
+      Information: info,
+      Deadline: date
+    });
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+}
 
 const sendPasswordReset = async (email) => {
   try {
@@ -118,5 +125,6 @@ export {
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
-  createTask,
+  createSystem,
+  createJob,
 };

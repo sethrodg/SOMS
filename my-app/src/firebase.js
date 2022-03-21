@@ -78,13 +78,25 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     alert(err.message);
   }
 };
-const createTask = async (TaskName, description, members) => {
-  await setDoc(doc(db, "tasks", TaskName)), {
-    name: TaskName,
-    description: description,
-    members: members
+const createTask = async (TaskName, Sname, Iusers) => {
+  try {
+    await addDoc(collection(db, "tasks"), {
+      name: TaskName,
+      SystemLead: Sname,
+      InterestedUsers: Iusers
+    });
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
   }
-};
+}
+// function createTask(TaskName, Sname, Iusers) {
+//   firebase.database().ref('tasks').set({
+//     Name: TaskName,
+//     SystemLeadName: Sname,
+//     InterestedUsers : Iusers
+//   });
+// }
 
 const sendPasswordReset = async (email) => {
   try {

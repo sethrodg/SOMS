@@ -29,8 +29,15 @@ function Pop() {
     }, [])
     const [user] = useAuthState(auth);
     const [taskName, settaskName] = useState("");
-    const [description, setdescription] = useState("");
-    const [members, setmembers] = useState("");
+    const [SystemLeadName, setSystemLeadName] = useState("");
+    const [InterestedUsers, setInterstedUsers] = useState("");
+    const CreateT = () => {
+        if (!taskName || !SystemLeadName || !InterestedUsers) 
+        {
+            alert("Please enter all the fields");
+        } 
+        createTask(taskName, SystemLeadName, InterestedUsers);
+      };
     if (user) { //check if user is logged in
         var email = user.email;
         var name = user.name;
@@ -139,13 +146,27 @@ function Pop() {
                     </Carousel>
                 </div>
                 <div className="Tasking">
-                    <Button variant="outlined" name="addTaskBtn">Create Task</Button>
+                    <Button variant="outlined" name="addTaskBtn" onClick={CreateT}>Create Task</Button>
                     <input
                         type="text"
                         className="createTask_textBox"
                         value={taskName}
                         onChange={(e) => settaskName(e.target.value)}
                         placeholder="Enter Task Name"
+                    />
+                    <input
+                        type="text"
+                        className="createTask_textBox"
+                        value={SystemLeadName}
+                        onChange={(e) => setSystemLeadName(e.target.value)}
+                        placeholder="Enter System Lead's Name"
+                    />
+                    <input
+                        type="text"
+                        className="createTask_textBox"
+                        value={InterestedUsers}
+                        onChange={(e) => setInterstedUsers(e.target.value)}
+                        placeholder="Enter Interested User's Names"
                     />
                     {/* <input
                         type="text"

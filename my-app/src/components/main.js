@@ -14,13 +14,18 @@ import {
 } from '../firebase';
 import { style } from '@mui/system';
 import { contains } from '@firebase/util';
+import { Dropdown } from 'react-bootstrap';
 const breakPoints = [
     { width: 1, itemsToShow: 1, pagination: false },
     { width: 0, itemsToShow: 2, itemsToScroll: 2, pagination: false },
     { width: 0, itemsToShow: 3, pagination: false },
     { width: 0, itemsToShow: 5, pagination: false }
 ];
+let counter1 = 0;
+let counter2 = 0;
 function Pop() {
+    counter1+=1;
+    console.log("counter one", counter1);
     let select = document.getElementById("selectSystems"); //Will appear twice in the dropdown
     const s = query(collection(db, "Systems"))
     const unsubb = onSnapshot(s, (querySnapshot) => {
@@ -30,13 +35,10 @@ function Pop() {
             var el = document.createElement("option");
             el.textContent = opt;
             el.value = opt;
-            if((el.value || el.textContent) in select){
-                //pass
-            }
-            else{
-                select.appendChild(el);
-            }
+            select.appendChild(el);
+            console.log("counter 2", counter2);
         });
+        counter2+=1;
     });
     const [user] = useAuthState(auth);
     const [SystemName, setSystemName] = useState("");

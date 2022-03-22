@@ -1,39 +1,39 @@
 .Body{
-    background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin-bottom: auto;
     width: auto;
+    background-color: rgb(253, 208, 155);
 }
 .home{
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
     border-radius: 2%;
     box-shadow: 2px 2px 2px rgb(61, 61, 61);
     margin: 2%;
     size: auto;
 }
 .login{
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
     border-radius: 2%;
     box-shadow: 2px 2px 2px rgb(61, 61, 61);
     margin: 2%;
     size: auto;
 }
 .signup{
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
     border-radius: 2%;
     box-shadow: 2px 2px 2px rgb(61, 61, 61);
     margin: 2%;
     size: auto;
 }
-.search{
+/* .search{
     border-radius: 2%;
     margin: 2%;
     size: auto;
-}
+} */
 .logout{
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
     border-radius: 2%;
     box-shadow: 2px 2px 2px rgb(61, 61, 61);
     margin: 2%;

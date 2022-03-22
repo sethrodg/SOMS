@@ -4,10 +4,11 @@
 }
 .filloutpage{
     display: flex;
-    flex: 1;
     flex-direction: column;
     justify-content: center;
-    min-height: 100%;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(253, 208, 155);
 }
 .Tasking{
     display: flex;
@@ -15,32 +16,40 @@
 }
 .pop_main{
     display: flex;
-    height: 100%;
     align-items: center;
-}
-.Card{
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 100%;
-    transition: all .2s ease-in-out;
-    justify-items: center;
-    text-align: center;
-}
-.Card:hover{
-    background-color: rgb(238, 238, 238);
-    transform: scale(1.1);
 }
 .Jobs{
     display: flex;
-    flex: 1;
     flex-direction: row;
     justify-content: center;
-    min-height: 100%;
     justify-items: center;
     text-align: center;
-    margin-top: 1%;
+    margin:1%;
+}
+
+.SystemName{
+    margin: 1%;
+    height: 15%;
+}
+.SystemLeadName{
+    margin: 1%;
+    height: 15%;
+}
+.setSystemJobName{
+    margin: 1%;
+    border-radius: 5px;
+}
+.setJobInfo{
+    margin: 1%;
+    border-radius: 5px;
+}
+.setJobDueDate{
+    margin: 1%;
+    border-radius: 5px;
+}
+#selectSystems{
+    margin:1%;
+    border-radius: 5px;
 }
 #carousel-wrapper{
     width: 100%;

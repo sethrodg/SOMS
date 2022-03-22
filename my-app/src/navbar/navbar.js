@@ -12,9 +12,6 @@ const navbar = () => {
     };
     return (
         <div class="Body">
-            <div class="search">
-                <input type="text" class="input" placeholder="Find jobs"></input>
-            </div>
             <div class="home">
                 <Nav.Link href="/">
                     <Button variant="outlined" >Home</Button>

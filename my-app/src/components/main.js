@@ -170,14 +170,14 @@ function Pop() {
                     <Button variant="outlined" name="addTaskBtn" onClick={CreateS}>Create System</Button>
                     <input
                         type="text"
-                        className="createTask_textBox"
+                        className="SystemName"
                         value={SystemName}
                         onChange={(e) => setSystemName(e.target.value)}
                         placeholder="Enter System Name"
                     />
                     <input
                         type="text"
-                        className="createTask_textBox"
+                        className="SystemLeadName"
                         value={SystemLead}
                         onChange={(e) => setSystemLead(e.target.value)}
                         placeholder="Enter System Lead Name"
@@ -191,21 +191,21 @@ function Pop() {
 
                     <input
                         type="text"
-                        className="createTask_textBox"
+                        className="setSystemJobName"
                         value={SystemJobName}
                         onChange={(e) => setSystemJobName(e.target.value)}
                         placeholder="Enter Job Name"
                     />
                     <input
                         type="text"
-                        className="createTask_textBox"
+                        className="setJobInfo"
                         value={Information}
                         onChange={(e) => setInformation(e.target.value)}
                         placeholder="Enter Job Information"
                     />
                     <input
                         type="text"
-                        className="createTask_textBox"
+                        className="setJobDueDate"
                         value={Deadline}
                         onChange={(e) => setDeadline(e.target.value)}
                         placeholder="Enter Due Date"

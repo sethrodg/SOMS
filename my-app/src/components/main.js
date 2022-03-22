@@ -50,30 +50,26 @@ function Pop() {
     const [user] = useAuthState(auth);
     const [SystemName, setSystemName] = useState("");
     const [SystemLead, setSystemLead] = useState("");
-    
+
     const [SystemSelection, setSystemSelection] = useState("");
     const [SystemJobName, setSystemJobName] = useState("");
-    const[Information, setInformation] = useState("");
+    const [Information, setInformation] = useState("");
     const [Deadline, setDeadline] = useState("");
     const CreateS = () => {
-        if (!SystemName || !SystemLead) 
-        {
+        if (!SystemName || !SystemLead) {
             alert("Please enter all the fields");
         }
-        else
-        {
+        else {
             createSystem(SystemName, SystemLead);
         }
     }
     const CreateJ = () => {
-        if (!Deadline || !SystemJobName || !Information) 
-        {
+        if (!Deadline || !SystemJobName || !Information) {
             alert("Please enter all the fields");
         }
-        else
-        {
+        else {
             createJob(SystemSelection, SystemJobName, Information, Deadline);
-        } 
+        }
     };
     if (user) { //check if user is logged in
         var email = user.email;
@@ -84,7 +80,6 @@ function Pop() {
             //checks to see if the last characters have the correct email for admin privledges
             admin = true;
         }
-        //console.log(admin, name, email, info);
         var Welcome = "Welcome " + email;
     }
     else { //if not logged in
@@ -93,11 +88,19 @@ function Pop() {
         var name = "";
         var info = "";
     }
-    console.log(jobsystem);
+    const color_options = ["#EBB9D2", "#FE9968", "#7FE0EB", "#6CE5B1"];
+    const image_options = [
+        "https://images.unsplash.com/photo-1524721696987-b9527df9e512?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1190&q=80",
+        "https://images.unsplash.com/photo-1556656793-08538906a9f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1506073828772-2f85239b6d2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80",
+        "https://images.unsplash.com/photo-1523800503107-5bc3ba2a6f81?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
+    ];
     var i = 0;
     const currentOptionText1 = document.getElementById("current-option-text1");
     const currentOptionInformation = document.getElementById("current-option-information");
     const currentOptionSystemName = document.getElementById("current-option-systemname");
+    const mainMenu = document.getElementById("menu");
+    const currentOptionImage = document.getElementById("image");
 
     const carousel = document.getElementById("carousel-wrapper");
     const NextOption = () => {
@@ -107,31 +110,41 @@ function Pop() {
         currentOptionInformation.dataset.nextText = jobinfo[i];
         currentOptionSystemName.dataset.nextText = jobsystem[i];
         carousel.classList.add("anim-next");
+
+        setTimeout(() => {
+            currentOptionImage.style.backgroundImage = "url(" + image_options[i] + ")";
+        }, 455);
+
         setTimeout(() => {
             currentOptionText1.innerText = joblist[i];
             currentOptionInformation.innerText = jobinfo[i];
             currentOptionSystemName.innerText = jobsystem[i];
-          carousel.classList.remove("anim-next");
+            mainMenu.style.background = color_options[i];
+            carousel.classList.remove("anim-next");
         }, 650);
-      };
-      const PreviousOption = () => {
+    };
+    const PreviousOption = () => {
         if (i === 0) {
-          i = joblist.length;
+            i = joblist.length;
         }
         i = i - 1;
-        //testingtext.dataset.nextText = test[i].JobName;
         currentOptionText1.dataset.previousText = joblist[i];
         currentOptionInformation.dataset.previousText = jobinfo[i];
         currentOptionSystemName.dataset.previousText = jobsystem[i];
-
         carousel.classList.add("anim-previous");
+
         setTimeout(() => {
-          currentOptionText1.innerText = joblist[i];
+            currentOptionImage.style.backgroundImage = "url(" + image_options[i] + ")";
+        }, 455);
+
+        setTimeout(() => {
+            currentOptionText1.innerText = joblist[i];
             currentOptionInformation.innerText = jobinfo[i];
             currentOptionSystemName.innerText = jobsystem[i];
-          carousel.classList.remove("anim-previous");
+            mainMenu.style.background = color_options[i];
+            carousel.classList.remove("anim-previous");
         }, 650);
-      };
+    };
     return (
         <>
             <div className="filloutpage">
@@ -139,18 +152,19 @@ function Pop() {
                     <h3 className="pop_nf_h3">{Welcome}</h3>
                 </div>
                 <div className="pop_main">
-                <div id="carousel-wrapper">
-                    <div id="menu">
-                        <div id="current-option">
-                            <span id="current-option-systemname" data-previous-text="" data-next-text=""></span>
-                            <span id="current-option-text1" data-previous-text="" data-next-text=""></span>
-                            <span id="current-option-information" data-previous-text="" data-next-text=""></span>
+                    <div id="carousel-wrapper">
+                        <div id="menu">
+                            <div id="current-option">
+                                <span id="current-option-systemname" data-previous-text="" data-next-text=""></span>
+                                <span id="current-option-text1" data-previous-text="" data-next-text=""></span>
+                                <span id="current-option-information" data-previous-text="" data-next-text=""></span>
+                            </div>
+                            <div id="image"></div>
+                            <button id="previous-option" onClick={PreviousOption}></button>
+                            <button id="next-option" onClick={NextOption}></button>
+                            <Button variant="outlined" name="EnrollBtn" >Enroll</Button>
                         </div>
-                        <button id="previous-option" onClick={PreviousOption}></button>
-                        <button id="next-option" onClick={NextOption}></button>
-                        <Button variant="outlined" name="EnrollBtn" >Enroll</Button>
                     </div>
-                </div>
                 </div>
                 <div className="Tasking">
                     <Button variant="outlined" name="addTaskBtn" onClick={CreateS}>Create System</Button>
@@ -171,10 +185,10 @@ function Pop() {
                 </div>
                 <div className="Jobs">
                     <Button variant="outlined" name="addTaskBtn" onClick={CreateJ}>Create Job</Button>
-                    <select id = "selectSystems" onChange={(e) => setSystemSelection(e.target.value)}>  
+                    <select id="selectSystems" onChange={(e) => setSystemSelection(e.target.value)}>
                         <option> ---Choose System--- </option>
                     </select>
-                    
+
                     <input
                         type="text"
                         className="createTask_textBox"

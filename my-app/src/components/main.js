@@ -25,14 +25,17 @@ const breakPoints = [
 function Pop() {
     let select = document.getElementById("selectSystems"); //Will appear twice in the dropdown
     let joblist = [];
+    let jobinfo = [];
     const j = query(collection(db, "Job"))
     const unsub = onSnapshot(j, (querySnapshot) => {
         const response = querySnapshot.docs.map(doc => doc.data());
         response.forEach(element => {
             joblist.push(element.JobName);
+            jobinfo.push(element.Information);
         });
     });
     console.log(joblist);
+    console.log(jobinfo);
     const s = query(collection(db, "Systems"))
     const unsubb = onSnapshot(s, (querySnapshot) => {
         const response = querySnapshot.docs.map(doc => doc.data());
@@ -98,14 +101,18 @@ function Pop() {
         "How to learn JS in 2 months"
       ];
     const currentOptionText1 = document.getElementById("current-option-text1");
+    const currentOptionInformation = document.getElementById("current-option-information");
+    
     const carousel = document.getElementById("carousel-wrapper");
     const NextOption = () => {
         i = i + 1;
         i = i % text1_options.length;
         currentOptionText1.dataset.nextText = joblist[i];
+        currentOptionInformation.dataset.nextText = jobinfo[i];
         carousel.classList.add("anim-next");
         setTimeout(() => {
           currentOptionText1.innerText = joblist[i];
+        currentOptionInformation.innerText = jobinfo[i];
           carousel.classList.remove("anim-next");
         }, 650);
       };
@@ -115,10 +122,12 @@ function Pop() {
         }
         i = i - 1;
         currentOptionText1.dataset.previousText = joblist[i];
-    
+        currentOptionInformation.dataset.previousText = jobinfo[i];
+
         carousel.classList.add("anim-previous");
         setTimeout(() => {
           currentOptionText1.innerText = joblist[i];
+        currentOptionInformation.innerText = jobinfo[i];
           carousel.classList.remove("anim-previous");
         }, 650);
       };
@@ -133,91 +142,12 @@ function Pop() {
                     <div id="menu">
                         <div id="current-option">
                             <span id="current-option-text1" data-previous-text="" data-next-text=""></span>
+                            <span id="current-option-information" data-previous-text="" data-next-text=""></span>
                         </div>
                         <button id="previous-option" onClick={PreviousOption}></button>
                         <button id="next-option" onClick={NextOption}></button>
                     </div>
                 </div>
-                    {/* <Carousel className = "listcarousel" breakPoints={breakPoints} pagination="false">
-                        <div className="Card">
-                            <img src={Data[0].image} />
-                            <h3>{Data[0].name}</h3>
-                            <p>{Data[0].link}</p>
-                            <h6>{Data[0].description}</h6>
-                        </div>
-                        <div className="Card">
-                            <img src={Data[1].image} />
-                            <h3>{Data[1].name}</h3>
-                            <p>{Data[1].link}</p>
-                            <h6>{Data[1].description}</h6>
-                        </div>
-                        <div className="Card">
-                            <img src={Data[2].image} />
-                            <h3>{Data[2].name}</h3>
-                            <p>{Data[2].link}</p>
-                            <h6>{Data[2].description}</h6>
-                        </div>
-                        <div className="Card">
-                            <img src={Data[3].image} />
-                            <h3>{Data[3].name}</h3>
-                            <p>{Data[3].link}</p>
-                            <h6>{Data[3].description}</h6>
-                        </div>
-                        <div className="Card">
-                            <img src={Data[4].image} />
-                            <h3>{Data[4].name}</h3>
-                            <p>{Data[4].link}</p>
-                            <h6>{Data[4].description}</h6>
-                        </div>
-                        <div className="Card">
-                            <img src={Data[5].image} />
-                            <h3>{Data[5].name}</h3>
-                            <p>{Data[5].link}</p>
-                            <h6>{Data[5].description}</h6>
-                        </div>
-                        <div className="Card">
-                            <img src={Data[6].image} />
-                            <h3>{Data[6].name}</h3>
-                            <p>{Data[6].link}</p>
-                            <h6>{Data[6].description}</h6>
-                        </div>
-                        <div className="Card">
-                            <img src={Data[7].image} />
-                            <h3>{Data[7].name}</h3>
-                            <p>{Data[7].link}</p>
-                            <h6>{Data[7].description}</h6>
-                        </div>
-                        <div className="Card">
-                            <img src={Data[8].image} />
-                            <h3>{Data[8].name}</h3>
-                            <p>{Data[8].link}</p>
-                            <h6>{Data[8].description}</h6>
-                        </div>
-                        <div className="Card">
-                            <img src={Data[9].image} />
-                            <h3>{Data[9].name}</h3>
-                            <p>{Data[9].link}</p>
-                            <h6>{Data[9].description}</h6>
-                        </div>
-                        <div className="Card">
-                            <img src={Data[10].image} />
-                            <h3>{Data[10].name}</h3>
-                            <p>{Data[10].link}</p>
-                            <h6>{Data[10].description}</h6>
-                        </div>
-                        <div className="Card">
-                            <img src={Data[11].image} />
-                            <h3>{Data[11].name}</h3>
-                            <p>{Data[11].link}</p>
-                            <h6>{Data[11].description}</h6>
-                        </div>
-                        <div className="Card">
-                            <img src={Data[12].image} />
-                            <h3>{Data[12].name}</h3>
-                            <p>{Data[12].link}</p>
-                            <h6>{Data[12].description}</h6>
-                        </div>
-                    </Carousel> */}
                 </div>
                 <div className="Tasking">
                     <Button variant="outlined" name="addTaskBtn" onClick={CreateS}>Create System</Button>

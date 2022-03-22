@@ -108,3 +108,13 @@
     position: absolute;
     transform: translate(310px, -50px) rotate(180deg);
   }
+#buttons{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+    justify-items: center;
+    text-align: center;
+    margin-top: 1%;
+}

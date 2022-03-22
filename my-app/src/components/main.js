@@ -45,7 +45,7 @@ function Pop() {
             var el = document.createElement("option");
             el.textContent = opt;
             el.value = opt;
-            //select.appendChild(el);
+            select.appendChild(el);
         });
     });
     const [user] = useAuthState(auth);
@@ -147,6 +147,7 @@ function Pop() {
                         </div>
                         <button id="previous-option" onClick={PreviousOption}></button>
                         <button id="next-option" onClick={NextOption}></button>
+                        <Button variant="outlined" name="EnrollBtn" >Enroll</Button>
                     </div>
                 </div>
                 </div>

@@ -99,9 +99,6 @@ function Pop() {
       ];
     const currentOptionText1 = document.getElementById("current-option-text1");
     const carousel = document.getElementById("carousel-wrapper");
-    const mainMenu = document.getElementById("menu");
-    const optionPrevious = document.getElementById("previous-option");
-    const optionNext = document.getElementById("next-option");
     const NextOption = () => {
         i = i + 1;
         i = i % text1_options.length;

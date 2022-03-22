@@ -44,7 +44,7 @@ function Pop() {
     const [SystemName, setSystemName] = useState("");
     const [SystemLead, setSystemLead] = useState("");
     
-
+    const [SystemSelection, setSystemSelection] = useState("");
     const [SystemJobName, setSystemJobName] = useState("");
     const[Information, setInformation] = useState("");
     const [Deadline, setDeadline] = useState("");
@@ -60,7 +60,7 @@ function Pop() {
         {
             alert("Please enter all the fields");
         } 
-        createJob(SystemJobName, Information, Deadline);
+        createJob(SystemSelection, SystemJobName, Information, Deadline);
     };
     if (user) { //check if user is logged in
         var email = user.email;
@@ -187,7 +187,7 @@ function Pop() {
                 </div>
                 <div className="Jobs">
                     <Button variant="outlined" name="addTaskBtn" onClick={CreateJ}>Create Job</Button>
-                    <select id = "selectSystems">  
+                    <select id = "selectSystems" onChange={(e) => setSystemSelection(e.target.value)}>  
                         <option> ---Choose System--- </option>
                     </select>
                     

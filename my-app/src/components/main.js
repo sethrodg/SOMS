@@ -15,18 +15,26 @@ import {
 import { style } from '@mui/system';
 import { contains } from '@firebase/util';
 import { Dropdown } from 'react-bootstrap';
+import { ConnectingAirportsOutlined } from '@mui/icons-material';
 const breakPoints = [
     { width: 1, itemsToShow: 1, pagination: false },
     { width: 0, itemsToShow: 2, itemsToScroll: 2, pagination: false },
     { width: 0, itemsToShow: 3, pagination: false },
     { width: 0, itemsToShow: 5, pagination: false }
 ];
-let counter1 = 0;
-let counter2 = 0;
 function Pop() {
-    counter1+=1;
-    console.log("counter one", counter1);
     let select = document.getElementById("selectSystems"); //Will appear twice in the dropdown
+    let joblist = [];
+    const j = query(collection(db, "Job"))
+    const unsub = onSnapshot(j, (querySnapshot) => {
+        const response = querySnapshot.docs.map(doc => doc.data());
+        response.forEach(element => {
+            joblist.push(element);
+        });
+    });
+    console.log(joblist);
+    
+    
     const s = query(collection(db, "Systems"))
     const unsubb = onSnapshot(s, (querySnapshot) => {
         const response = querySnapshot.docs.map(doc => doc.data());
@@ -36,9 +44,7 @@ function Pop() {
             el.textContent = opt;
             el.value = opt;
             select.appendChild(el);
-            console.log("counter 2", counter2);
         });
-        counter2+=1;
     });
     const [user] = useAuthState(auth);
     const [SystemName, setSystemName] = useState("");
@@ -53,14 +59,20 @@ function Pop() {
         {
             alert("Please enter all the fields");
         }
-        createSystem(SystemName, SystemLead);
+        else
+        {
+            createSystem(SystemName, SystemLead);
+        }
     }
     const CreateJ = () => {
         if (!Deadline || !SystemJobName || !Information) 
         {
             alert("Please enter all the fields");
+        }
+        else
+        {
+            createJob(SystemSelection, SystemJobName, Information, Deadline);
         } 
-        createJob(SystemSelection, SystemJobName, Information, Deadline);
     };
     if (user) { //check if user is logged in
         var email = user.email;
@@ -82,12 +94,15 @@ function Pop() {
     }
     return (
         <>
+        
             <div className="filloutpage">
                 <div>
                     <h3 className="pop_nf_h3">{Welcome}</h3>
                 </div>
+                
                 <div className="pop_main">
                     <Carousel breakPoints={breakPoints} pagination="false">
+                        
                         <div className="Card">
                             <img src={Data[0].image} />
                             <h3>{Data[0].name}</h3>

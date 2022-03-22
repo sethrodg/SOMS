@@ -12,7 +12,7 @@ import {
     createSystem,
     createJob,
 } from '../firebase';
-import { style } from '@mui/system';
+import { color, style } from '@mui/system';
 import { contains } from '@firebase/util';
 import { Dropdown } from 'react-bootstrap';
 import { ConnectingAirportsOutlined } from '@mui/icons-material';
@@ -29,12 +29,10 @@ function Pop() {
     const unsub = onSnapshot(j, (querySnapshot) => {
         const response = querySnapshot.docs.map(doc => doc.data());
         response.forEach(element => {
-            joblist.push(element);
+            joblist.push(element.JobName);
         });
     });
     console.log(joblist);
-    
-    
     const s = query(collection(db, "Systems"))
     const unsubb = onSnapshot(s, (querySnapshot) => {
         const response = querySnapshot.docs.map(doc => doc.data());
@@ -43,7 +41,7 @@ function Pop() {
             var el = document.createElement("option");
             el.textContent = opt;
             el.value = opt;
-            select.appendChild(el);
+            //select.appendChild(el);
         });
     });
     const [user] = useAuthState(auth);
@@ -92,17 +90,58 @@ function Pop() {
         var name = "";
         var info = "";
     }
+    var i = 0;
+    const text1_options = [
+        "Why art is so important",
+        "Why you shouldn't buy the new iPhone",
+        "Is life actually real?",
+        "How to learn JS in 2 months"
+      ];
+    const currentOptionText1 = document.getElementById("current-option-text1");
+    const carousel = document.getElementById("carousel-wrapper");
+    const mainMenu = document.getElementById("menu");
+    const optionPrevious = document.getElementById("previous-option");
+    const optionNext = document.getElementById("next-option");
+    const NextOption = () => {
+        i = i + 1;
+        i = i % text1_options.length;
+        currentOptionText1.dataset.nextText = joblist[i];
+        carousel.classList.add("anim-next");
+        setTimeout(() => {
+          currentOptionText1.innerText = joblist[i];
+          carousel.classList.remove("anim-next");
+        }, 650);
+      };
+      const PreviousOption = () => {
+        if (i === 0) {
+          i = joblist.length;
+        }
+        i = i - 1;
+        currentOptionText1.dataset.previousText = joblist[i];
+    
+        carousel.classList.add("anim-previous");
+        setTimeout(() => {
+          currentOptionText1.innerText = joblist[i];
+          carousel.classList.remove("anim-previous");
+        }, 650);
+      };
     return (
         <>
-        
             <div className="filloutpage">
                 <div>
                     <h3 className="pop_nf_h3">{Welcome}</h3>
                 </div>
-                
                 <div className="pop_main">
-                    <Carousel breakPoints={breakPoints} pagination="false">
-                        
+                <div id="carousel-wrapper">
+                    <div id="menu">
+                        <div id="current-option">
+                            <span id="current-option-text1" data-previous-text="" data-next-text=""></span>
+                        </div>
+                        <button id="previous-option" onClick={PreviousOption}></button>
+                        <button id="next-option" onClick={NextOption}></button>
+                    </div>
+                </div>
+                    {/* <Carousel className = "listcarousel" breakPoints={breakPoints} pagination="false">
                         <div className="Card">
                             <img src={Data[0].image} />
                             <h3>{Data[0].name}</h3>
@@ -181,7 +220,7 @@ function Pop() {
                             <p>{Data[12].link}</p>
                             <h6>{Data[12].description}</h6>
                         </div>
-                    </Carousel>
+                    </Carousel> */}
                 </div>
                 <div className="Tasking">
                     <Button variant="outlined" name="addTaskBtn" onClick={CreateS}>Create System</Button>

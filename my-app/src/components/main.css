@@ -8,11 +8,12 @@
     justify-content: center;
     height: 100%;
     width: 100%;
-    background-color: rgb(253, 208, 155);
+    background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
 }
 .Tasking{
     display: flex;
     justify-content: center;
+    visibility: hidden;
 }
 .pop_main{
     display: flex;
@@ -25,6 +26,8 @@
     justify-items: center;
     text-align: center;
     margin:1%;
+    visibility: hidden;
+
 }
 
 .SystemName{

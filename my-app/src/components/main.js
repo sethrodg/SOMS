@@ -79,7 +79,9 @@ function Pop() {
         if (email.slice(-8).includes("@uta.edu")) {
             //checks to see if the last characters have the correct email for admin privledges
             admin = true;
+            
         }
+        console.log(admin)
         var Welcome = "Welcome " + email;
     }
     else { //if not logged in

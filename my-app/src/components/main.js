@@ -26,16 +26,17 @@ function Pop() {
     let select = document.getElementById("selectSystems"); //Will appear twice in the dropdown
     let joblist = [];
     let jobinfo = [];
+    let test = [];
     const j = query(collection(db, "Job"))
     const unsub = onSnapshot(j, (querySnapshot) => {
         const response = querySnapshot.docs.map(doc => doc.data());
         response.forEach(element => {
             joblist.push(element.JobName);
             jobinfo.push(element.Information);
+            test.push(element);
         });
     });
-    console.log(joblist);
-    console.log(jobinfo);
+    //console.log(jobinfo);
     const s = query(collection(db, "Systems"))
     const unsubb = onSnapshot(s, (querySnapshot) => {
         const response = querySnapshot.docs.map(doc => doc.data());
@@ -94,23 +95,21 @@ function Pop() {
         var info = "";
     }
     var i = 0;
-    const text1_options = [
-        "Why art is so important",
-        "Why you shouldn't buy the new iPhone",
-        "Is life actually real?",
-        "How to learn JS in 2 months"
-      ];
+      console.log(test);
     const currentOptionText1 = document.getElementById("current-option-text1");
     const currentOptionInformation = document.getElementById("current-option-information");
+    const testingtext = document.getElementById("testing");
     
     const carousel = document.getElementById("carousel-wrapper");
     const NextOption = () => {
         i = i + 1;
-        i = i % text1_options.length;
+        i = i % test.length;
+        //testingtext.dataset.nextText = test[i].JobName;
         currentOptionText1.dataset.nextText = joblist[i];
         currentOptionInformation.dataset.nextText = jobinfo[i];
         carousel.classList.add("anim-next");
         setTimeout(() => {
+            //testingtext.dataset.nextText = test[i].JobName;
           currentOptionText1.innerText = joblist[i];
         currentOptionInformation.innerText = jobinfo[i];
           carousel.classList.remove("anim-next");
@@ -121,11 +120,13 @@ function Pop() {
           i = joblist.length;
         }
         i = i - 1;
+        //testingtext.dataset.nextText = test[i].JobName;
         currentOptionText1.dataset.previousText = joblist[i];
         currentOptionInformation.dataset.previousText = jobinfo[i];
 
         carousel.classList.add("anim-previous");
         setTimeout(() => {
+           // testingtext.dataset.nextText = test[i].JobName;
           currentOptionText1.innerText = joblist[i];
         currentOptionInformation.innerText = jobinfo[i];
           carousel.classList.remove("anim-previous");

@@ -3,30 +3,22 @@ import React, { useEffect, useState } from 'react';
 import { doc, onSnapshot, collection, query, where } from "firebase/firestore";
 import { db } from '../firebase';
 import './style.css';
-import Data from './data';
-import Carousel from "react-elastic-carousel";
 import './main.css'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
     auth,
     createSystem,
     createJob,
+    addPosition,
 } from '../firebase';
-import { color, style } from '@mui/system';
-import { contains } from '@firebase/util';
-import { Dropdown } from 'react-bootstrap';
-import { ConnectingAirportsOutlined } from '@mui/icons-material';
-const breakPoints = [
-    { width: 1, itemsToShow: 1, pagination: false },
-    { width: 0, itemsToShow: 2, itemsToScroll: 2, pagination: false },
-    { width: 0, itemsToShow: 3, pagination: false },
-    { width: 0, itemsToShow: 5, pagination: false }
-];
 function Pop() {
     let select = document.getElementById("selectSystems"); //Will appear twice in the dropdown
     let joblist = [];
     let jobinfo = [];
     let jobsystem = [];
+    let jobdate = [];
+    let currentJobName = "";
+    let currentJobSystem = "";
     const j = query(collection(db, "Job"))
     const unsub = onSnapshot(j, (querySnapshot) => {
         const response = querySnapshot.docs.map(doc => doc.data());
@@ -34,6 +26,7 @@ function Pop() {
             joblist.push(element.JobName);
             jobinfo.push(element.Information);
             jobsystem.push(element.SystemName);
+            jobdate.push(element.Deadline);
         });
     });
     const s = query(collection(db, "Systems"))
@@ -47,6 +40,7 @@ function Pop() {
             select.appendChild(el);
         });
     });
+    //Our variables for the two different fields that we'll use later on to create sysmems and jobs
     const [user] = useAuthState(auth);
     const [SystemName, setSystemName] = useState("");
     const [SystemLead, setSystemLead] = useState("");
@@ -55,6 +49,7 @@ function Pop() {
     const [SystemJobName, setSystemJobName] = useState("");
     const [Information, setInformation] = useState("");
     const [Deadline, setDeadline] = useState("");
+    //creation of systems function
     const CreateS = () => {
         if (!SystemName || !SystemLead) {
             alert("Please enter all the fields");
@@ -63,6 +58,7 @@ function Pop() {
             createSystem(SystemName, SystemLead);
         }
     }
+    //creation of jobs\tasks function
     const CreateJ = () => {
         if (!Deadline || !SystemJobName || !Information) {
             alert("Please enter all the fields");
@@ -71,15 +67,21 @@ function Pop() {
             createJob(SystemSelection, SystemJobName, Information, Deadline);
         }
     };
+    //function to update the user's positions that they're enrolled in as well as the systems they're interested in
+    const UpdateP = () => {
+        if( !user){
+            alert("Please log in or select a job to enroll in");
+        }
+        console.log(user.userRef, currentJobName);
+        console.log(currentJobSystem);
+        addPosition(user.userRef, currentJobName, currentJobSystem);
+    }
     if (user) { //check if user is logged in
         var email = user.email;
-        var name = user.name;
-        var info = user;
         var admin = false;
         if (email.slice(-8).includes("@uta.edu")) {
             //checks to see if the last characters have the correct email for admin privledges
             admin = true;
-            
         }
         console.log(admin)
         var Welcome = "Welcome " + email;
@@ -87,9 +89,9 @@ function Pop() {
     else { //if not logged in
         var Welcome = "Welcome Guest";
         var email = "";
-        var name = "";
-        var info = "";
     }
+
+    //This is all the code for the carosel
     const color_options = ["#EBB9D2", "#FE9968", "#7FE0EB", "#6CE5B1"];
     const image_options = [
         "https://images.unsplash.com/photo-1524721696987-b9527df9e512?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1190&q=80",
@@ -98,9 +100,10 @@ function Pop() {
         "https://images.unsplash.com/photo-1523800503107-5bc3ba2a6f81?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
     ];
     var i = 0;
-    const currentOptionText1 = document.getElementById("current-option-text1");
+    const currentOptionJobName = document.getElementById("current-option-jobname");
     const currentOptionInformation = document.getElementById("current-option-information");
     const currentOptionSystemName = document.getElementById("current-option-systemname");
+    const currentOptionDeadline = document.getElementById("current-option-deadline");
     const mainMenu = document.getElementById("menu");
     const currentOptionImage = document.getElementById("image");
 
@@ -108,9 +111,10 @@ function Pop() {
     const NextOption = () => {
         i = i + 1;
         i = i % joblist.length;
-        currentOptionText1.dataset.nextText = joblist[i];
+        currentOptionJobName.dataset.nextText = joblist[i];
         currentOptionInformation.dataset.nextText = jobinfo[i];
         currentOptionSystemName.dataset.nextText = jobsystem[i];
+        currentOptionDeadline.dataset.nextText = jobdate[i];
         carousel.classList.add("anim-next");
 
         setTimeout(() => {
@@ -118,9 +122,12 @@ function Pop() {
         }, 455);
 
         setTimeout(() => {
-            currentOptionText1.innerText = joblist[i];
+            currentOptionJobName.innerText = joblist[i];
             currentOptionInformation.innerText = jobinfo[i];
             currentOptionSystemName.innerText = jobsystem[i];
+            currentOptionDeadline.innerText = jobdate[i];
+            currentJobName = joblist[i];
+            currentJobSystem = jobsystem[i];
             mainMenu.style.background = color_options[i];
             carousel.classList.remove("anim-next");
         }, 650);
@@ -130,9 +137,10 @@ function Pop() {
             i = joblist.length;
         }
         i = i - 1;
-        currentOptionText1.dataset.previousText = joblist[i];
+        currentOptionJobName.dataset.previousText = joblist[i];
         currentOptionInformation.dataset.previousText = jobinfo[i];
         currentOptionSystemName.dataset.previousText = jobsystem[i];
+        currentOptionDeadline.dataset.previousText = jobdate[i];
         carousel.classList.add("anim-previous");
 
         setTimeout(() => {
@@ -140,9 +148,12 @@ function Pop() {
         }, 455);
 
         setTimeout(() => {
-            currentOptionText1.innerText = joblist[i];
+            currentOptionJobName.innerText = joblist[i];
             currentOptionInformation.innerText = jobinfo[i];
             currentOptionSystemName.innerText = jobsystem[i];
+            currentOptionDeadline.innerText = jobdate[i];
+            currentJobName = joblist[i];
+            currentJobSystem = jobsystem[i];
             mainMenu.style.background = color_options[i];
             carousel.classList.remove("anim-previous");
         }, 650);
@@ -158,13 +169,14 @@ function Pop() {
                         <div id="menu">
                             <div id="current-option">
                                 <span id="current-option-systemname" data-previous-text="" data-next-text=""></span>
-                                <span id="current-option-text1" data-previous-text="" data-next-text=""></span>
+                                <span id="current-option-jobname" data-previous-text="" data-next-text=""></span>
                                 <span id="current-option-information" data-previous-text="" data-next-text=""></span>
+                                <span id="current-option-deadline" data-previous-text="" data-next-text=""></span>
+                                <Button variant="outlined" id="EnrollBtn" onClick={UpdateP}>Enroll</Button>
                             </div>
                             <div id="image"></div>
                             <button id="previous-option" onClick={PreviousOption}></button>
                             <button id="next-option" onClick={NextOption}></button>
-                            <Button variant="outlined" name="EnrollBtn" >Enroll</Button>
                         </div>
                     </div>
                 </div>

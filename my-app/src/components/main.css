@@ -1,6 +1,8 @@
 .pop_nf_h3{
     display: flex;
     justify-content: center;
+    font-size: xx-large;
+    font-weight: 600;
 }
 .filloutpage{
     display: flex;
@@ -13,7 +15,7 @@
 .Tasking{
     display: flex;
     justify-content: center;
-    visibility: hidden;
+    visibility: show;
 }
 .pop_main{
     display: flex;
@@ -26,7 +28,7 @@
     justify-items: center;
     text-align: center;
     margin:1%;
-    visibility: hidden;
+    visibility: show;
 
 }
 
@@ -87,39 +89,55 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     overflow: hidden;
+    
 }
 #current-option-jobname {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     line-height: 3rem;
     width: 220px;
-    height: 200px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    font-weight: 350;
 }
 #current-option-information {
-    font-size: 1.2rem;
+    font-size: 1rem;
     line-height: 2rem;
     width: 220px;
-    height: 200px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    font-weight: 300;
 }
 #current-option-systemname {
     font-size: 3rem;
-    margin-top: 5%;
     margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    font-weight: 400;
 }
-
+#current-option-deadline {
+    font-size: 1rem;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 300;
+}
+#EnrollBtn{
+    margin: 5%;
+    border-radius: 5px;
+    background-color: beige;
+    box-shadow: 2px 2px 2px rgb(119, 119, 119);
+}
 #previous-option {
     width: 1.5rem;
     height: 1.5rem;

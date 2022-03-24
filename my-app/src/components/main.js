@@ -69,7 +69,7 @@ function Pop() {
     };
     //function to update the user's positions that they're enrolled in as well as the systems they're interested in
     const UpdateP = () => {
-        if( !user){
+        if (!user) {
             alert("Please log in or select a job to enroll in");
         }
         console.log(user.userRef, currentJobName);
@@ -158,8 +158,36 @@ function Pop() {
             carousel.classList.remove("anim-previous");
         }, 650);
     };
+
+    var result = document.querySelector('.output');
+    var Arr = ['India', 'USA', 'China', 'Netherlands', 'Nepal', 'Japan', 'Australia']
+
+    // auto complete function
+    function autoComplete(Arr, Input) {
+        return Arr.filter(e => e.toLowerCase().includes(Input.toLowerCase()));
+    }
+
+    function getValue(val) {
+        console.log(val);
+        // if no value
+        if (!val) {
+            result = '';
+            return
+        }
+        // search goes here 
+        var data = autoComplete(Arr, val);
+        // append list data
+        var res = '<ul>';
+        data.forEach(e => {
+            res += '<li>' + e + '</li>';
+        })
+        res += '</ul>';
+        result = res;
+    }
+
     return (
         <>
+
             <div className="filloutpage">
                 <div>
                     <h3 className="pop_nf_h3">{Welcome}</h3>
@@ -182,6 +210,8 @@ function Pop() {
                 </div>
                 <div className="Tasking">
                     <Button variant="outlined" name="addTaskBtn" onClick={CreateS}>Create System</Button>
+                    {/* <input id="testing" type="text" placeholder="Search Country.." onKeyUp={getValue(this.value)} />
+                    <div class="output"></div> This doesn't work since it cannot do this.value for some reason*/}
                     <input
                         type="text"
                         className="SystemName"

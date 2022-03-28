@@ -210,8 +210,6 @@ function Pop() {
                 </div>
                 <div className="Tasking">
                     <Button variant="outlined" name="addTaskBtn" onClick={CreateS}>Create System</Button>
-                    {/* <input id="testing" type="text" placeholder="Search Country.." onKeyUp={getValue(this.value)} />
-                    <div class="output"></div> This doesn't work since it cannot do this.value for some reason*/}
                     <input
                         type="text"
                         className="SystemName"

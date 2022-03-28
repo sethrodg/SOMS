@@ -5,7 +5,6 @@
     margin-bottom: auto;
     width: auto;
     background-color: #ace0f9;
-
 }
 .home{
     /* background-color: aliceblue; */
@@ -28,11 +27,6 @@
     margin: 2%;
     size: auto;
 }
-/* .search{
-    border-radius: 2%;
-    margin: 2%;
-    size: auto;
-} */
 .logout{
     /* background-color: aliceblue; */
     border-radius: 2%;

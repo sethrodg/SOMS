@@ -17,6 +17,11 @@ const navbar = () => {
                     <Button variant="outlined" >Home</Button>
                 </Nav.Link>
             </div>
+            <div class="explore">
+                <Nav.Link href="/explore">
+                    <Button variant="outlined" >Explore</Button>
+                </Nav.Link>
+            </div>
             <div class="login">
                 <Nav.Link href="/login">
                     <Button variant="outlined" >Login</Button>

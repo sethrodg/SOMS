@@ -4,67 +4,61 @@ import { doc, onSnapshot, collection, query, where } from "firebase/firestore";
 import { db } from '../firebase';
 import "./explore.css"
 const Explore = () => {
-    const slider = document.querySelector(".items");
-    const slides = document.querySelectorAll(".item");
-    const button = document.querySelectorAll(".button");
+    let systemnames = [];
+    let systemlead = [];
+    let systemdesc = [];
+    const s = query(collection(db, "Systems"))
+    const unsubb = onSnapshot(s, (querySnapshot) => {
+        const response = querySnapshot.docs.map(doc => doc.data());
+        response.forEach(element => {
+            systemnames.push(element.name);
+            systemlead.push(element.SystemLead);
+        });
+    });
+    
+    var i = 0;
+    const currentOption = document.getElementById("currentitem");
+    const nextOption = document.getElementById("nextitem");
+    const previousOption = document.getElementById("previousitem");
+    const NextOption = () => {
+        i = i + 1;
+        i = i % systemnames.length;
+        currentOption.dataset.nextText = systemnames[i];
+        carousel.classList.add("anim-next");
+        setTimeout(() => {
+            currentOption.innerText = systemnames[i];
+            carousel.classList.remove("anim-next");
+        }, 650);
+    }
+    const PreviousOption = () => {
+        if (i === 0) {
+            i = systemnames.length;
+        }
+        i = i - 1;
+        currentOption.dataset.previousText = systemnames[i];
+        carousel.classList.add("anim-previous");
 
-    let current = Math.floor(Math.random()*slides.length);
-    let prev = current > 0 ? current - 1 : slides.length - 1;
-    let next = current < slides.length - 1 ? current + 1 : 0;
-
-		for (let i = 0; i < button.length; i++) {
-			button[i].addEventListener("click", () => i == 0 ? gotoPrev() : gotoNext());
-		}
-
-		const gotoPrev = () => current > 0 ? gotoNum(current - 1) : gotoNum(slides.length - 1);
-
-		const gotoNext = () => current < 4 ? gotoNum(current + 1) : gotoNum(0);
-
-		const gotoNum = number => {
-			current = number;
-			prev = current - 1;
-			next = current + 1;
-
-			for (let i = 0; i < slides.length; i++) {
-				slides[i].classList.remove("active");
-				slides[i].classList.remove("prev");
-				slides[i].classList.remove("next");
-			}
-
-			if (next == 5) {
-				next = 0;
-			}
-
-			if (prev == -1) {
-				prev = 4;
-			}
-
-			slides[current].classList.add("active");
-			slides[prev].classList.add("prev");
-			slides[next].classList.add("next");
-		}
+        setTimeout(() => {
+            currentOption.innerText = systemnames[i];
+            carousel.classList.remove("anim-previous");
+        }, 650);
+    };
     return (
         <div class="items">
-		<div class="item active">
-			<img src="http://via.placeholder.com/500x500"/>
-		</div>
-		<div class=" item next">
-			<img src="http://via.placeholder.com/500x500"/>
-		</div>
-		<div class="item">
-			<img src="http://via.placeholder.com/500x500"/>
-		</div>
-		<div class="item">
-			<img src="http://via.placeholder.com/500x500"/>
-		</div>
-		<div class="item prev">
-			<img src="http://via.placeholder.com/500x500"/>
-		</div>
-		<div class="button-container">
-			<div class="button"><i class="fas fa-angle-left"></i></div>
-			<div class="button"><i class="fas fa-angle-right"></i></div>
-		</div>
-	</div>
+            <div class="item active">
+                <span id="currentitem" data-previous-text="" data-next-text=""></span>
+            </div>
+            <div class=" item next">
+                <span id="nextitem" data-previous-text="" data-next-text=""></span>
+            </div>
+            <div class="item prev">
+                <span id="previousitem" data-previous-text="" data-next-text=""></span>
+            </div>
+            <div class="button-container">
+                <div class="button" onClick={NextOption}></div>
+                <div class="button"onClick={PreviousOption} ></div>
+            </div>
+	    </div>
     )
 }
 export default Explore;

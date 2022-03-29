@@ -37,8 +37,6 @@ function Pop() {
             var el = document.createElement("option");
             el.textContent = opt;
             el.value = opt;
-            console.log(el);
-            console.log(select);
             select.appendChild(el);
 
             //This function removes duplicates from the SELECT list
@@ -172,32 +170,6 @@ function Pop() {
             carousel.classList.remove("anim-previous");
         }, 650);
     };
-
-    var result = document.querySelector('.output');
-    var Arr = ['India', 'USA', 'China', 'Netherlands', 'Nepal', 'Japan', 'Australia']
-
-    // auto complete function
-    function autoComplete(Arr, Input) {
-        return Arr.filter(e => e.toLowerCase().includes(Input.toLowerCase()));
-    }
-
-    function getValue(val) {
-        console.log(val);
-        // if no value
-        if (!val) {
-            result = '';
-            return
-        }
-        // search goes here 
-        var data = autoComplete(Arr, val);
-        // append list data
-        var res = '<ul>';
-        data.forEach(e => {
-            res += '<li>' + e + '</li>';
-        })
-        res += '</ul>';
-        result = res;
-    }
 
     return (
         <>

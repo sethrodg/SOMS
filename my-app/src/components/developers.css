@@ -1,0 +1,70 @@
+.container {
+  flex-direction: row;
+  flex-wrap: wrap;
+  display: flex;
+  padding: 5px;
+  margin: 10px;
+  justify-content: space-around;
+  column-gap: 100px;
+  row-gap: 20px;
+}
+.card{
+    width: 350px;
+    height: 400px;
+    margin-top: 100px;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 5px solid #fff1eb;
+    background-color: rgb(234, 241, 247);
+    color: rgb(51, 48, 48);
+}
+.img-name{
+    width: 100%;
+    height: 210px;
+    
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -75px;
+    
+    border-bottom: 5px solid #fff1eb;
+}
+.img-name img{
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 70px;
+    border: 5px solid rgb(202, 202, 233);
+    background-color: rgb(234, 241, 247);
+}
+.img-name h2{
+    text-align: center;
+    padding: 16px;
+}
+.followers{
+    height: 140px;
+    padding-top: 50px;
+   
+}
+.followers h3{
+    text-align: center;
+    padding: 8px;
+}
+.button-follow{
+    height: 115px;
+}
+.button-follow  button{
+    display: block;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 16px;
+    background-color: #fff1eb;
+     border-radius: 10px;
+     font-size: 18px;
+}
+.button-follow button:hover{
+    background-color: #ace0f9;
+}

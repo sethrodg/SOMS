@@ -22,6 +22,11 @@ const navbar = () => {
                     <Button variant="outlined" >Explore</Button>
                 </Nav.Link>
             </div>
+            <div class="developers">
+                <Nav.Link href="/developers">
+                    <Button variant="outlined" >Developers</Button>
+                </Nav.Link>
+            </div>
             <div class="login">
                 <Nav.Link href="/login">
                     <Button variant="outlined" >Login</Button>

@@ -1,8 +1,13 @@
+body{
+    background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+}
+
 .pop_nf_h3{
     display: flex;
     justify-content: center;
     font-size: xx-large;
     font-weight: 600;
+    padding: 1.5%;
 }
 .filloutpage{
     display: flex;
@@ -10,7 +15,9 @@
     justify-content: center;
     height: 100%;
     width: 100%;
-    background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+    /* background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+    background-size: cover; */
+    /* background-color: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%); */
 }
 .Tasking{
     display: flex;

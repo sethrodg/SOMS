@@ -221,7 +221,42 @@ function Pop() {
                             <button id="next-option" onClick={NextOption}></button>
                         </div>
                     </div>
+                
+
+                    <div class="Announcements">
+                        <h1 class="copyCenter">Announcements</h1>  
+
+                        <div class="box warning" >
+                            <div class="closeArea" id="warning"><p class="copyRight"></p></div>
+                            <div class="copyArea"><p><strong>Urgent Notice:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
+                        </div>
+
+                        <div class="box warning" >
+                            <div class="closeArea" id="warning"><p class="copyRight"></p></div>
+                            <div class="copyArea"><p><strong>Weather Announcement:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
+                        </div>
+
+                        <div class="box warning" >
+                            <div class="closeArea" id="warning"><p class="copyRight"></p></div>
+                            <div class="copyArea"><p><strong>Sign up for our newsletter!</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
+                       
+                        </div>
+
+                       <div class="box warning" >
+                            <div class="closeArea" id="warning"><p class="copyRight"></p></div>
+                            <div class="copyArea"><p><strong>Hours Update:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
+                        </div>
+
+                      
+
+                    </div>
+
+
+
+      
+
                 </div>
+                
                 <div className="Tasking">
                     <Button variant="outlined" name="addTaskBtn" onClick={CreateS}>Create System</Button>
                     <input

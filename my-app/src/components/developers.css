@@ -36,8 +36,8 @@
     margin-left: auto;
     margin-right: auto;
     border-radius: 70px;
-    border: 5px solid rgb(202, 202, 233);
-    background-color: rgb(234, 241, 247);
+    border: 5px solid #fff1eb;
+    background-color: #fff1eb;
 }
 .img-name h2{
     text-align: center;

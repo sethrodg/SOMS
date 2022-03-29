@@ -30,7 +30,7 @@ const SignUp = () => {
   }, [user, loading]);
   const register = () => {
     if (!name) alert("Please enter name");
-    registerWithEmailAndPassword(name, email, password);
+    registerWithEmailAndPassword(name, email, password); //When registering the position\interestedsystem is autofilled with Memeber\ N/A.
   };
   return (
     <Grid container style={{ minHeight: '100vh' }}>

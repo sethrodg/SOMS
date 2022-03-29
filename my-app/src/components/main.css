@@ -1,46 +1,60 @@
 .pop_nf_h3{
     display: flex;
     justify-content: center;
+    font-size: xx-large;
+    font-weight: 600;
 }
 .filloutpage{
     display: flex;
-    flex: 1;
     flex-direction: column;
     justify-content: center;
-    min-height: 100%;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
 }
 .Tasking{
     display: flex;
     justify-content: center;
+    visibility: show;
 }
 .pop_main{
     display: flex;
-    height: 100%;
     align-items: center;
-}
-.Card{
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 100%;
-    transition: all .2s ease-in-out;
-    justify-items: center;
-    text-align: center;
-}
-.Card:hover{
-    background-color: rgb(238, 238, 238);
-    transform: scale(1.1);
 }
 .Jobs{
     display: flex;
-    flex: 1;
     flex-direction: row;
     justify-content: center;
-    min-height: 100%;
     justify-items: center;
     text-align: center;
-    margin-top: 1%;
+    margin: 2.4%;
+    visibility: show;
+
+}
+
+.SystemName{
+    margin: 1%;
+    height: 15%;
+}
+.SystemLeadName{
+    margin: 1%;
+    height: 15%;
+}
+.setSystemJobName{
+    margin: 1%;
+    border-radius: 5px;
+}
+.setJobInfo{
+    margin: 1%;
+    border-radius: 5px;
+}
+.setJobDueDate{
+    margin: 1%;
+    border-radius: 5px;
+}
+#selectSystems{
+    margin:1%;
+    border-radius: 5px;
 }
 #carousel-wrapper{
     width: 100%;
@@ -63,7 +77,9 @@
     justify-content: center;
     vertical-align: middle;
     transition: all 0.6s ease-in-out;
-    background-color: rgb(152, 243, 255);
+    margin-bottom: 2%;
+    border-radius: 5px;
+    box-shadow: 2px 7px 7px gray;
 }
 #current-option {
     position: relative;
@@ -73,40 +89,55 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     overflow: hidden;
+    
 }
 #current-option-jobname {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     line-height: 3rem;
     width: 220px;
-    height: 200px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    font-weight: 350;
 }
 #current-option-information {
-    font-size: 1.6rem;
-    line-height: 3rem;
+    font-size: 1rem;
+    line-height: 2rem;
     width: 220px;
-    height: 200px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    font-weight: 300;
 }
 #current-option-systemname {
-    font-size: 1.6rem;
-    line-height: 3rem;
-    width: 220px;
-    height: 200px;
+    font-size: 3rem;
+    margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    font-weight: 400;
 }
-
+#current-option-deadline {
+    font-size: 1rem;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 300;
+}
+#EnrollBtn{
+    margin: 5%;
+    border-radius: 5px;
+    background-color: beige;
+    box-shadow: 2px 2px 2px rgb(119, 119, 119);
+}
 #previous-option {
     width: 1.5rem;
     height: 1.5rem;
@@ -139,3 +170,13 @@
     text-align: center;
     margin-top: 1%;
 }
+#image {
+    height: 240px;
+    width: 240px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 101;
+    position: absolute;
+    transform: translate(140px, 0);
+  }

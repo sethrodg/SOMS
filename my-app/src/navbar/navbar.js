@@ -12,12 +12,14 @@ const navbar = () => {
     };
     return (
         <div class="Body">
-            <div class="search">
-                <input type="text" class="input" placeholder="Find jobs"></input>
-            </div>
             <div class="home">
                 <Nav.Link href="/">
                     <Button variant="outlined" >Home</Button>
+                </Nav.Link>
+            </div>
+            <div class="explore">
+                <Nav.Link href="/explore">
+                    <Button variant="outlined" >Explore</Button>
                 </Nav.Link>
             </div>
             <div class="login">
@@ -29,6 +31,9 @@ const navbar = () => {
                 <Nav.Link href="/signup">
                     <Button variant="outlined" >signup</Button>
                 </Nav.Link>
+            </div>
+            <div class="search">
+                <input type="text" class="input" placeholder="Find jobs"></input>
             </div>
             <div class="logout">
                 <Nav.Link href="/">

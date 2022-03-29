@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set, update } from "firebase/database";
 import {
   GoogleAuthProvider,
   getAuth,
@@ -20,6 +20,7 @@ import {
   where,
   addDoc,
   setDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { Info } from "@mui/icons-material";
 // Your web app's Firebase configuration
@@ -73,12 +74,29 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       name,
       authProvider: "local",
       email,
+      position: ["Member"],
+      interestedsystems: ["None"],
+      userRef: "users/" + user.uid,
     });
   } catch (err) {
     console.error(err);
     alert(err.message);
   }
 };
+
+const addPosition = async (userRef, postion, interestedsystem) => {
+  try {
+    const userReferenceDoc = doc(db, userRef);
+    await updateDoc(userReferenceDoc, {
+      position: postion,
+      interestedsystems: interestedsystem,
+    });
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+}
+
 const createSystem = async (SystemName, Sname) => {
   try {
     await addDoc(collection(db, "Systems"), {
@@ -105,6 +123,7 @@ const createJob = async (Sname, Jname, info, date) => {
   }
 }
 
+
 const sendPasswordReset = async (email) => {
   try {
     await sendPasswordResetEmail(auth, email);
@@ -127,4 +146,5 @@ export {
   logout,
   createSystem,
   createJob,
+  addPosition
 };

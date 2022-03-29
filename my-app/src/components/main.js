@@ -37,7 +37,21 @@ function Pop() {
             var el = document.createElement("option");
             el.textContent = opt;
             el.value = opt;
+            console.log(el);
+            console.log(select);
             select.appendChild(el);
+
+            //This function removes duplicates from the SELECT list
+            [].slice.call(select.options)
+                .map(function(a){
+                if(this[a.value]){ 
+                    select.removeChild(a); 
+                } else { 
+                    this[a.value]=1; 
+                } 
+            },{});
+            
+     
         });
     });
     //Our variables for the two different fields that we'll use later on to create sysmems and jobs
@@ -227,10 +241,11 @@ function Pop() {
                 </div>
                 <div className="Jobs">
                     <Button variant="outlined" name="addTaskBtn" onClick={CreateJ}>Create Job</Button>
-                    <select id="selectSystems" onChange={(e) => setSystemSelection(e.target.value)}>
-                        <option> ---Choose System--- </option>
-                    </select>
 
+                    <select id="selectSystems">
+                        <option>--Chose System--</option>
+                    </select>
+                        
                     <input
                         type="text"
                         className="setSystemJobName"

@@ -26,8 +26,82 @@ body{
 }
 .pop_main{
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+    margin: 2.4%;
+    visibility: show;
 }
+
+
+
+
+
+a, a:visited {
+    color: #008080;
+  }
+  a:hover {
+    color: #00cccc;
+  }
+  .copyCenter {
+    text-align: center;
+  }
+  .copyRight {
+    text-align: right;
+  }
+  .Announcements {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .box {
+    max-width: 100%;
+    padding: 0px 10px;
+    overflow: auto;
+    margin: 20px 5px;
+  }
+  .iconArea {
+    width:50px;
+    float: left;
+    display: inline-block;
+  }
+  .copyArea {
+    max-width: 850px;
+    float: none;
+    display:block;
+    overflow: hidden;
+  }
+  .copyArea p {
+    margin-top: 20px;
+  }
+  .closeArea {
+    width: 30px;
+    float: right;
+  }
+  .closeArea i {
+    cursor: pointer;
+  }
+  
+  
+  /* Unique Box Styles */
+  .warning {
+    background:salmon;
+    border-radius: 3px;
+  }
+
+  
+
+
+.vf-table .demo {
+    min-width: 25em;
+    font-size: 2.625em;
+  }
+  .vf-table .demo::before {
+    content: 'Lorem ipsum';
+  }
+  
+
+
 .Jobs{
     display: flex;
     flex-direction: row;

@@ -32,9 +32,6 @@ const navbar = () => {
                     <Button variant="outlined" >signup</Button>
                 </Nav.Link>
             </div>
-            <div class="search">
-                <input type="text" class="input" placeholder="Find jobs"></input>
-            </div>
             <div class="logout">
                 <Nav.Link href="/">
                     <Button variant="outlined" onClick={logO} >Log out</Button>

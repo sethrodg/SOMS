@@ -72,7 +72,7 @@ function Pop() {
     }
     //creation of jobs\tasks function
     const CreateJ = () => {
-        if (!Deadline || !SystemJobName || !Information) {
+        if (!Deadline || !SystemJobName || !Information || !SystemSelection) {
             alert("Please enter all the fields");
         }
         else {
@@ -249,8 +249,8 @@ function Pop() {
                 <div className="Jobs">
                     <Button variant="outlined" name="addTaskBtn" onClick={CreateJ}>Create Job</Button>
 
-                    <select id="selectSystems">
-                        <option>--Chose System--</option>
+                    <select id="selectSystems" onChange={(e) => setSystemSelection(e.target.value)}>
+                        <option>--Choose System--</option>
                     </select>
                         
                     <input

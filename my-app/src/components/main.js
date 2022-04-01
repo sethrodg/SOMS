@@ -84,9 +84,8 @@ function Pop() {
         if (!user) {
             alert("Please log in or select a job to enroll in");
         }
-        console.log(user.userRef, currentJobName);
-        console.log(currentJobSystem);
-        addPosition(user.userRef, currentJobName, currentJobSystem);
+        console.log(user);
+        addPosition(user, currentJobName, currentJobSystem);
     }
     if (user) { //check if user is logged in
         var email = user.email;

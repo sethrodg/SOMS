@@ -41,15 +41,15 @@ function Pop() {
 
             //This function removes duplicates from the SELECT list
             [].slice.call(select.options)
-                .map(function(a){
-                if(this[a.value]){ 
-                    select.removeChild(a); 
-                } else { 
-                    this[a.value]=1; 
-                } 
-            },{});
-            
-     
+                .map(function (a) {
+                    if (this[a.value]) {
+                        select.removeChild(a);
+                    } else {
+                        this[a.value] = 1;
+                    }
+                }, {});
+
+
         });
     });
     //Our variables for the two different fields that we'll use later on to create sysmems and jobs
@@ -192,10 +192,10 @@ function Pop() {
                             <button id="next-option" onClick={NextOption}></button>
                         </div>
                     </div>
-                
+
 
                     <div class="Announcements">
-                        <h1 class="copyCenter">Announcements</h1>  
+                        <h1 class="copyCenter">Announcements</h1>
 
                         <div class="box warning" >
                             <div class="closeArea" id="warning"><p class="copyRight"></p></div>
@@ -210,24 +210,24 @@ function Pop() {
                         <div class="box warning" >
                             <div class="closeArea" id="warning"><p class="copyRight"></p></div>
                             <div class="copyArea"><p><strong>Sign up for our newsletter!</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
-                       
+
                         </div>
 
-                       <div class="box warning" >
+                        <div class="box warning" >
                             <div class="closeArea" id="warning"><p class="copyRight"></p></div>
                             <div class="copyArea"><p><strong>Hours Update:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
                         </div>
 
-                      
+
 
                     </div>
 
 
 
-      
+
 
                 </div>
-                
+
                 <div className="Tasking">
                     <Button variant="outlined" name="addTaskBtn" onClick={CreateS}>Create System</Button>
                     <input
@@ -251,7 +251,7 @@ function Pop() {
                     <select id="selectSystems" onChange={(e) => setSystemSelection(e.target.value)}>
                         <option>--Choose System--</option>
                     </select>
-                        
+
                     <input
                         type="text"
                         className="setSystemJobName"

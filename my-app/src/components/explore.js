@@ -9,10 +9,10 @@ const Explore = () => {
     let select = document.getElementsByClassName("gallery__item"); //Will appear twice in the dropdown
     let systemlead = [];
     let systemdesc = [];
-    function arrayRemove(arr, value) { 
-    
-        return arr.filter(function(ele){ 
-            return ele != value; 
+    function arrayRemove(arr, value) {
+
+        return arr.filter(function (ele) {
+            return ele != value;
         });
     }
     const s = query(collection(db, "Systems"))
@@ -22,45 +22,58 @@ const Explore = () => {
             var opt = element.name;
             systemnames.push(opt);
         });
-        
         let list = document.getElementById("carouselList");
         systemnames.forEach(item => {
-        console.log(item);
-        let li = document.createElement("li");
-        li.innerText = item;
-        list.appendChild(li);
+            //console.log(item);
+            let li = document.createElement("li");
+            li.innerText = item;
+            list.appendChild(li);
         });
         console.log(list);
     });
 
 
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         var stream = document.querySelector('.gallery__stream');
         var items = document.querySelectorAll('.gallery__item');
-        
+
         var prev = document.querySelector('.gallery__prev');
-        prev.addEventListener('click', function() {
-          stream.insertBefore(items[items.length - 1], items[0]);
-          items = document.querySelectorAll('.gallery__item');
+        prev.addEventListener('click', function () {
+            stream.insertBefore(items[items.length - 1], items[0]);
+            items = document.querySelectorAll('.gallery__item');
         });
-        
+
         var next = document.querySelector('.gallery__next');
-        next.addEventListener('click', function() {
-          stream.appendChild(items[0]);
-          items = document.querySelectorAll('.gallery__item');
+        next.addEventListener('click', function () {
+            stream.appendChild(items[0]);
+            items = document.querySelectorAll('.gallery__item');
         });
-      });
-    //Can't add list elements since line 57 doesn't work
-    
+    });
+
+    function addElement() { //is able to add things to the carousel, just need to combine this with the above query in order to place things inside the carousel
+        // create a new div element
+        const newDiv = document.createElement("div");
+        newDiv.classList = "gallery__item";
+        // and give it some content
+        const newContent = document.createTextNode("Hi there and greetings!");
+
+        // add the text node to the newly created div
+        newDiv.appendChild(newContent);
+
+        // add the newly created element and its content into the DOM
+        const currentDiv = document.getElementById("div1");
+        document.body.insertBefore(newDiv, currentDiv);
+    }
+    addElement();
     return (
-        <div className = "testing">
+        <div className="testing">
             <div class="gallery">
                 <div class="gallery__prev"></div>
                 <div class="gallery__next"></div>
-                <div class ="gallery__stream">
-                    <div class = "gallery__item" id = "carouselList"/>
-                    <div class="gallery__item bg-1">ONE</div>
+                <div class="gallery__stream">
+                    <li class="gallery__item" id="carouselList" />
+                    <div id="div1" class="gallery__item bg-1">ONE</div>
                     <div class="gallery__item bg-2">TWO</div>
                     <div class="gallery__item bg-3">THREE</div>
                     <div class="gallery__item bg-4">FOUR</div>

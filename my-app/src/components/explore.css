@@ -67,6 +67,10 @@
     background-repeat: no-repeat;
     background-position: center center;
     border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 2%;
   }
   
   .gallery__item:nth-child(1) {

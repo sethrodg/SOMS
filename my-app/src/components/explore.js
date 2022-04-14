@@ -21,14 +21,26 @@ const Explore = () => {
         response.forEach(element => {
             var opt = element.name;
             systemnames.push(opt);
-        }); 
+        });
         systemnames.forEach(item => {
-            let parentnode = document.getElementById("div1"); //make the parentnode
+            let parentnode = document.getElementById("div1"); //make the parent node
             let child = document.createElement("div"); //make the child
             child.classList = "gallery__item"; //give the child the class (gallery__item) is what's used in CSS to make it all work across the board
-            let li = document.createTextNode(item); //giving the child some content
-            child.appendChild(li);
-            parentnode.appendChild(child);
+            let system = document.createElement("div"); //giving the child some content
+            system.classList = "SystemTitle"; //making a class for the title of the systems
+            let titletext = document.createTextNode(item);
+            system.appendChild(titletext); //appending the text to a div
+            let systemphoto = document.createElement("img"); //creating an image for each carousel.
+            systemphoto.classList = "System_Photo";
+            systemphoto.src = "https://images.unsplash.com/photo-1506073828772-2f85239b6d2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"
+            let systemdesc = document.createElement("div"); //making a div for the description for the systems
+            systemdesc.classList = "System_Description";
+            let desctext = document.createTextNode("text text text");
+            systemdesc.appendChild(desctext); //appending the text to a div
+            child.appendChild(system);
+            child.appendChild(systemphoto);
+            child.appendChild(systemdesc);
+            parentnode.appendChild(child); // finally appending all the children nodes holding the content to the parent carousel card.
         });
     });
 
@@ -56,8 +68,8 @@ const Explore = () => {
             <div class="gallery">
                 <div class="gallery__prev"></div>
                 <div class="gallery__next"></div>
-                <div class="gallery__stream" id = "div1">
-                    <div class = "gallery__item">Welcome to the Explore Page</div>
+                <div class="gallery__stream" id="div1">
+                    <div class="gallery__item">Welcome to the Explore Page</div>
                 </div>
             </div>
         </div>

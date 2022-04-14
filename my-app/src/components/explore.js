@@ -1,5 +1,3 @@
-import { Avatar, Button, Checkbox, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@mui/material'
-import { useAuthState } from 'react-firebase-hooks/auth';
 import React, { useEffect, useState } from 'react';
 import { doc, onSnapshot, collection, query, where } from "firebase/firestore";
 import { db } from '../firebase';
@@ -32,7 +30,7 @@ const Explore = () => {
             system.appendChild(titletext); //appending the text to a div
             let systemphoto = document.createElement("img"); //creating an image for each carousel.
             systemphoto.classList = "System_Photo";
-            systemphoto.src = "https://images.unsplash.com/photo-1506073828772-2f85239b6d2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"
+            systemphoto.src = "utalogo.png" //just a placeholder for images that are specific to the system
             let systemdesc = document.createElement("div"); //making a div for the description for the systems
             systemdesc.classList = "System_Description";
             let desctext = document.createTextNode("text text text");

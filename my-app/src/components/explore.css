@@ -77,9 +77,19 @@
   border-radius: 2%;
 }
 
+.SystemTitle {
+  font-size: xx-large;
+  font-weight: bolder;
+}
+
 .System_Photo {
   height: 20vw;
   width: 20vw;
+}
+
+.System_Description {
+  font-size: medium;
+  font-weight: 500;
 }
 
 .gallery__item:nth-child(1) {

@@ -37,21 +37,19 @@ function Pop() {
             var el = document.createElement("option");
             el.textContent = opt;
             el.value = opt;
-            console.log(el);
-            console.log(select);
             select.appendChild(el);
 
             //This function removes duplicates from the SELECT list
             [].slice.call(select.options)
-                .map(function(a){
-                if(this[a.value]){ 
-                    select.removeChild(a); 
-                } else { 
-                    this[a.value]=1; 
-                } 
-            },{});
-            
-     
+                .map(function (a) {
+                    if (this[a.value]) {
+                        select.removeChild(a);
+                    } else {
+                        this[a.value] = 1;
+                    }
+                }, {});
+
+
         });
     });
     //Our variables for the two different fields that we'll use later on to create sysmems and jobs
@@ -74,7 +72,7 @@ function Pop() {
     }
     //creation of jobs\tasks function
     const CreateJ = () => {
-        if (!Deadline || !SystemJobName || !Information) {
+        if (!Deadline || !SystemJobName || !Information || !SystemSelection) {
             alert("Please enter all the fields");
         }
         else {
@@ -86,9 +84,8 @@ function Pop() {
         if (!user) {
             alert("Please log in or select a job to enroll in");
         }
-        console.log(user.userRef, currentJobName);
-        console.log(currentJobSystem);
-        addPosition(user.userRef, currentJobName, currentJobSystem);
+        //console.log(user);
+        addPosition(user, currentJobName, currentJobSystem);
     }
     if (user) { //check if user is logged in
         var email = user.email;
@@ -173,32 +170,6 @@ function Pop() {
         }, 650);
     };
 
-    var result = document.querySelector('.output');
-    var Arr = ['India', 'USA', 'China', 'Netherlands', 'Nepal', 'Japan', 'Australia']
-
-    // auto complete function
-    function autoComplete(Arr, Input) {
-        return Arr.filter(e => e.toLowerCase().includes(Input.toLowerCase()));
-    }
-
-    function getValue(val) {
-        console.log(val);
-        // if no value
-        if (!val) {
-            result = '';
-            return
-        }
-        // search goes here 
-        var data = autoComplete(Arr, val);
-        // append list data
-        var res = '<ul>';
-        data.forEach(e => {
-            res += '<li>' + e + '</li>';
-        })
-        res += '</ul>';
-        result = res;
-    }
-
     return (
         <>
 
@@ -221,7 +192,42 @@ function Pop() {
                             <button id="next-option" onClick={NextOption}></button>
                         </div>
                     </div>
+
+
+                    <div class="Announcements">
+                        <h1 class="copyCenter">Announcements</h1>
+
+                        <div class="box warning" >
+                            <div class="closeArea" id="warning"><p class="copyRight"></p></div>
+                            <div class="copyArea"><p><strong>Urgent Notice:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
+                        </div>
+
+                        <div class="box warning" >
+                            <div class="closeArea" id="warning"><p class="copyRight"></p></div>
+                            <div class="copyArea"><p><strong>Weather Announcement:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
+                        </div>
+
+                        <div class="box warning" >
+                            <div class="closeArea" id="warning"><p class="copyRight"></p></div>
+                            <div class="copyArea"><p><strong>Sign up for our newsletter!</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
+
+                        </div>
+
+                        <div class="box warning" >
+                            <div class="closeArea" id="warning"><p class="copyRight"></p></div>
+                            <div class="copyArea"><p><strong>Hours Update:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
                 </div>
+
                 <div className="Tasking">
                     <Button variant="outlined" name="addTaskBtn" onClick={CreateS}>Create System</Button>
                     <input
@@ -242,10 +248,10 @@ function Pop() {
                 <div className="Jobs">
                     <Button variant="outlined" name="addTaskBtn" onClick={CreateJ}>Create Job</Button>
 
-                    <select id="selectSystems">
-                        <option>--Chose System--</option>
+                    <select id="selectSystems" onChange={(e) => setSystemSelection(e.target.value)}>
+                        <option>--Choose System--</option>
                     </select>
-                        
+
                     <input
                         type="text"
                         className="setSystemJobName"

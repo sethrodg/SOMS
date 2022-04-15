@@ -140,6 +140,15 @@ a:hover {
   height: 15%;
 }
 
+.SystemDescription {
+  margin: 1%;
+  height: 15%;
+}
+.Systemimage {
+  margin: 1%;
+  height: 15%;
+}
+
 .setSystemJobName {
   margin: 1%;
   border-radius: 5px;

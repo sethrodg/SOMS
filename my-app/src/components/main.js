@@ -56,6 +56,8 @@ function Pop() {
     const [user] = useAuthState(auth);
     const [SystemName, setSystemName] = useState("");
     const [SystemLead, setSystemLead] = useState("");
+    const [SystemDescription, setSystemDescription] = useState("");
+    const [Systemimg, setSystemimg] = useState("");
 
     const [SystemSelection, setSystemSelection] = useState("");
     const [SystemJobName, setSystemJobName] = useState("");
@@ -63,11 +65,11 @@ function Pop() {
     const [Deadline, setDeadline] = useState("");
     //creation of systems function
     const CreateS = () => {
-        if (!SystemName || !SystemLead) {
+        if (!SystemName || !SystemLead || !SystemDescription || !Systemimg) {
             alert("Please enter all the fields");
         }
         else {
-            createSystem(SystemName, SystemLead);
+            createSystem(SystemName, SystemLead, SystemDescription, Systemimg);
         }
     }
     //creation of jobs\tasks function
@@ -244,6 +246,17 @@ function Pop() {
                         onChange={(e) => setSystemLead(e.target.value)}
                         placeholder="Enter System Lead Name"
                     />
+                    <input
+                        type="text"
+                        className="Systemimage"
+                        value={Systemimg}
+                        onChange={(e) => setSystemimg(e.target.value)}
+                        placeholder="Enter System Image url"
+                    />
+                    <textarea className = "SystemDescription" rows = "4" cols = "25" value={SystemDescription} onChange={(e) => setSystemDescription(e.target.value)} placeholder = "Enter System Description">
+                    </textarea>
+
+                    
                 </div>
                 <div className="Jobs">
                     <Button variant="outlined" name="addTaskBtn" onClick={CreateJ}>Create Job</Button>

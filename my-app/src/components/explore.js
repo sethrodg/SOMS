@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import { doc, onSnapshot, collection, query, where } from "firebase/firestore";
 import { db } from '../firebase';
 import "./explore.css"
@@ -7,6 +6,7 @@ const Explore = () => {
     let select = document.getElementsByClassName("gallery__item"); //Will appear twice in the dropdown
     let systemlead = [];
     let systemdesc = [];
+    let systemimg = [];
     function arrayRemove(arr, value) {
 
         return arr.filter(function (ele) {
@@ -17,8 +17,14 @@ const Explore = () => {
     const unsubb = onSnapshot(s, (querySnapshot) => {
         const response = querySnapshot.docs.map(doc => doc.data());
         response.forEach(element => {
-            var opt = element.name;
-            systemnames.push(opt);
+            var sysname = element.name;
+            var syslead = element.systemlead;
+            var sysdesc = element.description;
+            var sysimg = element.ImageURL;
+            systemnames.push(sysname);
+            systemlead.push(syslead);
+            systemdesc.push(sysdesc);
+            systemimg.push(sysimg);
         });
         systemnames.forEach(item => {
             let parentnode = document.getElementById("div1"); //make the parent node

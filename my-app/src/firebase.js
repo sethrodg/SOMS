@@ -116,11 +116,13 @@ const addPosition = async (userRef, postion, interestedsystem) => {
   }
 }
 
-const createSystem = async (SystemName, Sname) => {
+const createSystem = async (SystemName, Sname, SystemDescription, Systemimg) => {
   try {
     await addDoc(collection(db, "Systems"), {
       name: SystemName,
       SystemLead: Sname,
+      Description: SystemDescription,
+      ImageURL: Systemimg,
     });
   } catch (err) {
     console.error(err);

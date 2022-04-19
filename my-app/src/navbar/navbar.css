@@ -1,4 +1,4 @@
-.Body{
+.Body {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -6,45 +6,75 @@
     width: auto;
     background-color: #ace0f9;
 }
-.home{
+
+.home {
     /* background-color: aliceblue; */
     border-radius: 2%;
     box-shadow: 2px 2px 2px rgb(61, 61, 61);
     margin: 2%;
     size: auto;
 }
-.login{
+
+.home:hover {
+    background-color: #EBB9D2;
+}
+
+.login {
     /* background-color: aliceblue; */
     border-radius: 2%;
     box-shadow: 2px 2px 2px rgb(61, 61, 61);
     margin: 2%;
     size: auto;
 }
-.signup{
+
+.login:hover {
+    background-color: #EBB9D2;
+}
+
+.signup {
     /* background-color: aliceblue; */
     border-radius: 2%;
     box-shadow: 2px 2px 2px rgb(61, 61, 61);
     margin: 2%;
     size: auto;
 }
-.explore{
+
+.signup:hover {
+    background-color: #EBB9D2;
+}
+
+.explore {
     /* background-color: aliceblue; */
     border-radius: 2%;
     box-shadow: 2px 2px 2px rgb(61, 61, 61);
     margin: 2%;
     size: auto;
 }
-.developers{
+
+.explore:hover {
+    background-color: #EBB9D2;
+}
+
+.developers {
     /* background-color: aliceblue; */
     border-radius: 2%;
     box-shadow: 2px 2px 2px rgb(61, 61, 61);
     margin: 2%;
     size: auto;
 }
-.logout{
+
+.developers:hover {
+    background-color: #EBB9D2;
+}
+
+.logout {
     /* background-color: aliceblue; */
     border-radius: 2%;
     box-shadow: 2px 2px 2px rgb(61, 61, 61);
     margin: 2%;
     size: auto;
+}
+
+.logout:hover {
+    background-color: #EBB9D2;
 }

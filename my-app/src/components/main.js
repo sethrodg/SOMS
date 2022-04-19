@@ -103,7 +103,10 @@ function Pop() {
         var Welcome = "Welcome Guest";
         var email = ""; //setting the email to be blank as there's no current user
     }
-
+    //if the user is an admin then we'll have to hide the system creation as well as the job creation
+    const testingtasking = document.getElementsByClassName("Tasking");
+    const testingjobs = document.getElementsByClassName("Jobs");
+    //testingtasking.style.background = "#FE9968"; //this doesn't work, cannot use .style to try and alter css for that specific class = we can't hide it this way
     //This is all the code for the carosel
     const color_options = ["#EBB9D2", "#FE9968", "#7FE0EB", "#6CE5B1"];
     const image_options = [

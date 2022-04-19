@@ -1,5 +1,9 @@
 body {
   background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 40vw;
+  width: 100%;
 }
 
 .pop_nf_h3 {
@@ -144,6 +148,7 @@ a:hover {
   margin: 1%;
   height: 15%;
 }
+
 .Systemimage {
   margin: 1%;
   height: 15%;

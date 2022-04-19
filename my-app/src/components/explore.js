@@ -1,31 +1,25 @@
-import { doc, onSnapshot, collection, query, where } from "firebase/firestore";
+import { onSnapshot, collection, query } from "firebase/firestore";
 import { db } from '../firebase';
 import "./explore.css"
 const Explore = () => {
     let systemnames = [];
-    let select = document.getElementsByClassName("gallery__item"); //Will appear twice in the dropdown
     let systemlead = [];
-    let systemdesc = [];
+    let systemdescription = [];
     let systemimg = [];
-    function arrayRemove(arr, value) {
-
-        return arr.filter(function (ele) {
-            return ele != value;
-        });
-    }
     const s = query(collection(db, "Systems"))
     const unsubb = onSnapshot(s, (querySnapshot) => {
         const response = querySnapshot.docs.map(doc => doc.data());
         response.forEach(element => {
             var sysname = element.name;
             var syslead = element.systemlead;
-            var sysdesc = element.description;
+            var sysdesc = element.Description;
             var sysimg = element.ImageURL;
             systemnames.push(sysname);
             systemlead.push(syslead);
-            systemdesc.push(sysdesc);
+            systemdescription.push(sysdesc);
             systemimg.push(sysimg);
         });
+        var counter = 0; //needed a counter as we're implementing the promises due to javascript with its async functionality.
         systemnames.forEach(item => {
             let parentnode = document.getElementById("div1"); //make the parent node
             let child = document.createElement("div"); //make the child
@@ -36,15 +30,16 @@ const Explore = () => {
             system.appendChild(titletext); //appending the text to a div
             let systemphoto = document.createElement("img"); //creating an image for each carousel.
             systemphoto.classList = "System_Photo";
-            systemphoto.src = "utalogo.png" //just a placeholder for images that are specific to the system
+            systemphoto.src = systemimg[counter]; //just a placeholder for images that are specific to the system
             let systemdesc = document.createElement("div"); //making a div for the description for the systems
             systemdesc.classList = "System_Description";
-            let desctext = document.createTextNode("text text text");
+            let desctext = document.createTextNode(systemdescription[counter]);
             systemdesc.appendChild(desctext); //appending the text to a div
             child.appendChild(system);
             child.appendChild(systemphoto);
             child.appendChild(systemdesc);
             parentnode.appendChild(child); // finally appending all the children nodes holding the content to the parent carousel card.
+            counter += 1; //incrementing counter to ensure we pair the correct description + image with the system
         });
     });
 
@@ -68,13 +63,11 @@ const Explore = () => {
     });
 
     return (
-        <div className="testing">
-            <div class="gallery">
-                <div class="gallery__prev"></div>
-                <div class="gallery__next"></div>
-                <div class="gallery__stream" id="div1">
-                    <div class="gallery__item">Welcome to the Explore Page</div>
-                </div>
+        <div class="gallery">
+            <div class="gallery__prev"></div>
+            <div class="gallery__next"></div>
+            <div class="gallery__stream" id="div1">
+                <div id="testing" class="gallery__item">Thank you for looking through all of the Systems we have! </div>
             </div>
         </div>
     )

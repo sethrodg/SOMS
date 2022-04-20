@@ -12,61 +12,69 @@ import {
     addPosition,
 } from '../firebase';
 function Pop() {
+    //Our variables for the two different fields that we'll use later on to create sysmems and jobs
+    const [user] = useAuthState(auth);
+    const [SystemName, setSystemName] = useState("");
+    const [SystemLead, setSystemLead] = useState("");
+    const [SystemDescription, setSystemDescription] = useState("");
+    const [Systemimg, setSystemimg] = useState("");
+    const [currentUser, setcurrentUser] = useState("");
+    let currentJobName = "";
+    let currentJobSystem = "";
+
+    const [SystemSelection, setSystemSelection] = useState("");
+    const [SystemJobName, setSystemJobName] = useState("");
+    const [Information, setInformation] = useState("");
+    const [Deadline, setDeadline] = useState("");
+    
+    //creation of systems function
+    const CreateS = () => {
+        if (!SystemName || !SystemLead || !SystemDescription || !Systemimg) {
+            alert("Please enter all the fields");
+        }
+        else {
+            createSystem(SystemName, SystemLead, SystemDescription, Systemimg);
+        }
+    }
+    //creation of jobs\tasks function
+    const CreateJ = () => {
+        if (!Deadline || !SystemJobName || !Information || !SystemSelection) {
+            alert("Please enter all the fields");
+        }
+        else {
+            createJob(SystemSelection, SystemJobName, Information, Deadline);
+        }
+    };
+    //function to update the user's positions that they're enrolled in as well as the systems they're interested in
+    const UpdateP = () => {
+        console.log("something");
+        if(!user){
+            console.log("no user");
+            alert("Please sign in to update your positions");
+        }
+        else{
+            addPosition(user, currentJobName, currentJobSystem);
+        }
+    }
+    if (user) { //check if user is logged in
+        var email = user.email;
+        var admin = false;
+        if (email.slice(-8).includes("@uta.edu")) {
+            //checks to see if the last characters have the correct email for admin privledges
+            admin = true;
+        }
+        console.log(admin)
+        var Welcome = "Welcome " + email; //setting the welcome message to be paired with the user's email
+    }
+    else { //if not logged in
+        var Welcome = "Welcome Guest";
+        var email = ""; //setting the email to be blank as there's no current user
+    }
     let select = document.getElementById("selectSystems"); //Will appear twice in the dropdown
     let joblist = [];
     let jobinfo = [];
     let jobsystem = [];
     let jobdate = [];
-    let currentJobName = "";
-    let currentJobSystem = "";
-    const j = query(collection(db, "Job"))
-    const unsub = onSnapshot(j, (querySnapshot) => {
-        const response = querySnapshot.docs.map(doc => doc.data());
-        response.forEach(element => {
-            joblist.push(element.JobName);
-            jobinfo.push(element.Information);
-            jobsystem.push(element.SystemName);
-            jobdate.push(element.Deadline);
-        });
-        var counter = 0;
-        joblist.forEach(item => {
-            let parentnode = document.getElementById("div1"); //make the parent node
-            let child = document.createElement("div"); //make the child
-            child.classList = "gallery__item"; //give the child the class (gallery__item) is what's used in CSS to make it all work across the board
-            let system = document.createElement("div"); //giving the child some content
-            system.classList = "JobTitle"; //making a class for the title of the systems
-            let titletext = document.createTextNode(item);
-            system.appendChild(titletext); //appending the text to a div
-            // let systemphoto = document.createElement("img"); //creating an image for each carousel.
-            // systemphoto.classList = "System_Photo";
-            //systemphoto.src = systemimg[counter]; //just a placeholder for images that are specific to the system
-            let systemdesc = document.createElement("div"); //making a div for the description for the systems
-            systemdesc.classList = "Job_Description";
-            let desctext = document.createTextNode(jobinfo[counter]);
-            systemdesc.appendChild(desctext); //appending the text to a div
-            child.appendChild(system);
-            //child.appendChild(systemphoto);
-            child.appendChild(systemdesc);
-            parentnode.appendChild(child); // finally appending all the children nodes holding the content to the parent carousel card.
-            counter += 1; //incrementing counter to ensure we pair the correct description + image with the system
-        });
-    });
-    document.addEventListener('DOMContentLoaded', function () {
-        var stream = document.querySelector('.gallery__stream');
-        var items = document.querySelectorAll('.gallery__item');
-
-        var prev = document.querySelector('.gallery__prev');
-        prev.addEventListener('click', function () {
-            stream.insertBefore(items[items.length - 1], items[0]);
-            items = document.querySelectorAll('.gallery__item');
-        });
-
-        var next = document.querySelector('.gallery__next');
-        next.addEventListener('click', function () {
-            stream.appendChild(items[0]);
-            items = document.querySelectorAll('.gallery__item');
-        });
-    });
     const s = query(collection(db, "Systems"))
     const unsubb = onSnapshot(s, (querySnapshot) => {
         const response = querySnapshot.docs.map(doc => doc.data());
@@ -90,57 +98,74 @@ function Pop() {
 
         });
     });
-    //Our variables for the two different fields that we'll use later on to create sysmems and jobs
-    const [user] = useAuthState(auth);
-    const [SystemName, setSystemName] = useState("");
-    const [SystemLead, setSystemLead] = useState("");
-    const [SystemDescription, setSystemDescription] = useState("");
-    const [Systemimg, setSystemimg] = useState("");
+    const j = query(collection(db, "Job"))
+    const unsub = onSnapshot(j, (querySnapshot) => {
+        const response = querySnapshot.docs.map(doc => doc.data());
+        response.forEach(element => {
+            joblist.push(element.JobName);
+            jobinfo.push(element.Information);
+            jobsystem.push(element.SystemName);
+            jobdate.push(element.Deadline);
+        });
+        // var counter = 0;
+        // joblist.forEach(item => {
+        //     let parentnode = document.getElementById("div1"); //make the parent node
+        //     let child = document.createElement("div"); //make the child
+        //     child.classList = "gallery__item"; //give the child the class (gallery__item) is what's used in CSS to make it all work across the board
+        //     child.id = "gallery__item" + counter; //needed to create an id so that we're able to target the specific job when we click on it.
+        //     let jobtitle = document.createElement("div"); //giving the child some content
+        //     jobtitle.classList = "JobTitle"; //making a class for the title of the jobtitles
+        //     let titletext = document.createTextNode(item);
+        //     jobtitle.appendChild(titletext); //appending the text to a div
+        //     let systemdesc = document.createElement("div"); //making a div for the description for the systems
+        //     systemdesc.classList = "Job_Description";
+        //     let desctext = document.createTextNode(jobinfo[counter]);
+        //     systemdesc.appendChild(desctext); //appending the text to a div
+        //     let Jsystem = document.createElement("div");
+        //     Jsystem.classList = "Job_System";
+        //     let systemtext = document.createTextNode(jobsystem[counter]);
+        //     let enrollBtn = document.createElement("button");
+        //     Jsystem.appendChild(systemtext);
+        //     let duedate = document.createElement("div");
+        //     duedate.classList = "Job_Duedate";
+        //     let duedatetext = document.createTextNode(jobdate[counter]);
+        //     duedate.appendChild(duedatetext);
+        //     enrollBtn.classList = "enrollBtn";
+        //     enrollBtn.innerHTML = "Enroll";
 
-    const [SystemSelection, setSystemSelection] = useState("");
-    const [SystemJobName, setSystemJobName] = useState("");
-    const [Information, setInformation] = useState("");
-    const [Deadline, setDeadline] = useState("");
-    //creation of systems function
-    const CreateS = () => {
-        if (!SystemName || !SystemLead || !SystemDescription || !Systemimg) {
-            alert("Please enter all the fields");
-        }
-        else {
-            createSystem(SystemName, SystemLead, SystemDescription, Systemimg);
-        }
-    }
-    //creation of jobs\tasks function
-    const CreateJ = () => {
-        if (!Deadline || !SystemJobName || !Information || !SystemSelection) {
-            alert("Please enter all the fields");
-        }
-        else {
-            createJob(SystemSelection, SystemJobName, Information, Deadline);
-        }
-    };
-    //function to update the user's positions that they're enrolled in as well as the systems they're interested in
-    const UpdateP = () => {
-        if (!user) {
-            alert("Please log in or select a job to enroll in");
-        }
-        //console.log(user);
-        addPosition(user, currentJobName, currentJobSystem);
-    }
-    if (user) { //check if user is logged in
-        var email = user.email;
-        var admin = false;
-        if (email.slice(-8).includes("@uta.edu")) {
-            //checks to see if the last characters have the correct email for admin privledges
-            admin = true;
-        }
-        console.log(admin)
-        var Welcome = "Welcome " + email; //setting the welcome message to be paired with the user's email
-    }
-    else { //if not logged in
-        var Welcome = "Welcome Guest";
-        var email = ""; //setting the email to be blank as there's no current user
-    }
+        //     child.appendChild(Jsystem);
+        //     child.appendChild(jobtitle);
+        //     child.appendChild(systemdesc);
+        //     child.appendChild(duedate);
+        //     enrollBtn.addEventListener("click", function (){
+        //         currentJobName = item;
+        //         console.log(currentJobName);
+        //         currentJobSystem = document.getElementById(child.id).getElementsByClassName("Job_Description")[0].innerHTML;
+        //         console.log(currentJobSystem); //this doesn't work. it says that there's no user that's currently logged in (this might be an async issue with javascript)
+        //         //getinfo(user, currentJobName, currentJobSystem);
+        //     });
+        //     //enrollBtn.addEventListener("click", UpdateP); //item, document.getElementById(child.id).getElementsByClassName("Job_Description")[0].innerHTML )}); 
+        //     child.append(enrollBtn);
+        //     parentnode.appendChild(child); // finally appending all the children nodes holding the content to the parent carousel card.
+        //     counter += 1; //incrementing counter to ensure we pair the correct description + image with the system
+        // });
+    });
+    // document.addEventListener('DOMContentLoaded', function () { //this is for the carousel
+    //     var stream = document.querySelector('.gallery__stream');
+    //     var items = document.querySelectorAll('.gallery__item');
+
+    //     var prev = document.querySelector('.gallery__prev');
+    //     prev.addEventListener('click', function () {
+    //         stream.insertBefore(items[items.length - 1], items[0]);
+    //         items = document.querySelectorAll('.gallery__item');
+    //     });
+
+    //     var next = document.querySelector('.gallery__next');
+    //     next.addEventListener('click', function () {
+    //         stream.appendChild(items[0]);
+    //         items = document.querySelectorAll('.gallery__item');
+    //     });
+    // });
     //if the user is an admin then we'll have to hide the system creation as well as the job creation
     const testingtasking = document.getElementsByClassName("Tasking");
     const testingjobs = document.getElementsByClassName("Jobs");
@@ -221,28 +246,28 @@ function Pop() {
                 <div>
                     <h3 className="pop_nf_h3">{Welcome}</h3>
                 </div>
-                <div class="gallery">
+                {/* <div class="gallery">
                     <div class="gallery__prev"></div>
                     <div class="gallery__next"></div>
                     <div class="gallery__stream" id="div1">
                         <div id="testing" class="gallery__item">Thank you for looking through all of the jobs we have! </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="pop_main">
-                    {/* <div id="carousel-wrapper">
+                    <div id="carousel-wrapper">
                         <div id="menu">
-                            <div id="current-option">
+                             <div id="current-option">
                                 <span id="current-option-systemname" data-previous-text="" data-next-text=""></span>
                                 <span id="current-option-jobname" data-previous-text="" data-next-text=""></span>
                                 <span id="current-option-information" data-previous-text="" data-next-text=""></span>
                                 <span id="current-option-deadline" data-previous-text="" data-next-text=""></span>
                                 <Button variant="outlined" id="EnrollBtn" onClick={UpdateP}>Enroll</Button>
-                            </div>
+                            </div> 
                             <div id="image"></div>
                             <button id="previous-option" onClick={PreviousOption}></button>
                             <button id="next-option" onClick={NextOption}></button>
                         </div>
-                    </div> */}
+                    </div>
 
                     <div class="Announcements">
                         <h1 class="copyCenter">Announcements</h1>

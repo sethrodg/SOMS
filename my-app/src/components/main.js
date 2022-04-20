@@ -296,7 +296,7 @@ function Pop() {
                 </div>
 
                 <div className="Tasking">
-                    <Button variant="outlined" name="addTaskBtn" onClick={CreateS}>Create System</Button>
+                    <Button variant="outlined" id = "TaskBtn" name="addTaskBtn" onClick={CreateS}>Create System</Button>
                     <input
                         type="text"
                         className="SystemName"
@@ -323,7 +323,7 @@ function Pop() {
                 </div>
 
                 <div className="Jobs">
-                    <Button variant="outlined" name="addTaskBtn" onClick={CreateJ}>Create Job</Button>
+                    <Button variant="outlined" id = "CreateJobBtn" name="addTaskBtn" onClick={CreateJ}>Create Job</Button>
 
                     <select id="selectSystems" onChange={(e) => setSystemSelection(e.target.value)}>
                         <option>--Choose System--</option>

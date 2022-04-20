@@ -29,6 +29,12 @@ body {
   justify-content: center;
   visibility: show;
 }
+#TaskBtn:hover{
+  background-color: #EBB9D2;
+}
+#CreateJobBtn:hover{
+  background-color: #EBB9D2;
+}
 
 .pop_main {
   display: flex;
@@ -260,8 +266,10 @@ a:hover {
 #EnrollBtn {
   margin: 5%;
   border-radius: 5px;
-  background-color: beige;
   box-shadow: 2px 2px 2px rgb(119, 119, 119);
+}
+#EnrollBtn:hover{
+  background-color: #EBB9D2;
 }
 
 #previous-option {

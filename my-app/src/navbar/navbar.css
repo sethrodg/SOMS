@@ -1,80 +1,56 @@
-.Body {
-    display: flex;
-    flex-direction: row;
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,900);
+
+.myLogo { 
+	max-height: 20px;
+	height: 100%;
+	width: 151px;
+	font-family: 'Lato', sans-serif;
+	color: #FFF;
+}
+.myLogo span { color: #F05557; font-weight:normal; }
+
+.navbar {
     justify-content: center;
-    margin-bottom: auto;
-    width: auto;
-    background-color: #ace0f9;
+}
+.navbar ul li { 
+	color: #FFF !important;
+	font-size: 13pt !important;
+}
+.navbar .active a, .nav a:focus {
+	color:#F05557 !important;
 }
 
-.home {
-    /* background-color: aliceblue; */
-    border-radius: 2%;
-    box-shadow: 2px 2px 2px rgb(61, 61, 61);
-    margin: 2%;
-    size: auto;
+/* Menu - animations */
+.navbar-nav a::before, .navbar-nav a::after {
+	display: inline-block;
+	opacity: 0;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+	-moz-transition: -moz-transform 0.3s, opacity 0.2s;
+	transition: transform 0.3s, opacity 0.2s;
+}
+.navbar-nav a::before {
+	margin-right: 10px;
+	content: '[';
+	-webkit-transform: translateX(20px);
+	-moz-transform: translateX(20px);
+	transform: translateX(20px);
+}
+.navbar-nav a::after {
+	margin-left: 10px;
+	content: ']';
+	-webkit-transform: translateX(-20px);
+	-moz-transform: translateX(-20px);
+	transform: translateX(-20px);
+}
+.navbar-nav a:hover, .navbar-nav a:hover::before, .navbar-nav a:hover::after, .navbar-nav a:focus::before, .navbar-nav a:focus::after {
+	color:#F05557 !important;
+	opacity: 1;
+	-webkit-transform: translateX(0px);
+	-moz-transform: translateX(0px);
+	transform: translateX(0px);
 }
 
-.home:hover {
-    background-color: #EBB9D2;
-}
-
-.login {
-    /* background-color: aliceblue; */
-    border-radius: 2%;
-    box-shadow: 2px 2px 2px rgb(61, 61, 61);
-    margin: 2%;
-    size: auto;
-}
-
-.login:hover {
-    background-color: #EBB9D2;
-}
-
-.signup {
-    /* background-color: aliceblue; */
-    border-radius: 2%;
-    box-shadow: 2px 2px 2px rgb(61, 61, 61);
-    margin: 2%;
-    size: auto;
-}
-
-.signup:hover {
-    background-color: #EBB9D2;
-}
-
-.explore {
-    /* background-color: aliceblue; */
-    border-radius: 2%;
-    box-shadow: 2px 2px 2px rgb(61, 61, 61);
-    margin: 2%;
-    size: auto;
-}
-
-.explore:hover {
-    background-color: #EBB9D2;
-}
-
-.developers {
-    /* background-color: aliceblue; */
-    border-radius: 2%;
-    box-shadow: 2px 2px 2px rgb(61, 61, 61);
-    margin: 2%;
-    size: auto;
-}
-
-.developers:hover {
-    background-color: #EBB9D2;
-}
-
-.logout {
-    /* background-color: aliceblue; */
-    border-radius: 2%;
-    box-shadow: 2px 2px 2px rgb(61, 61, 61);
-    margin: 2%;
-    size: auto;
-}
-
-.logout:hover {
-    background-color: #EBB9D2;
+.navbarbody {
+    margin-bottom: 4%;
 }

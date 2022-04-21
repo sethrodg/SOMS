@@ -9,10 +9,66 @@ import {
     auth,
     createSystem,
     createJob,
+    createAnnouncement,
     addPosition,
 } from '../firebase';
 function Pop() {
     //Our variables for the two different fields that we'll use later on to create sysmems and jobs
+
+    let select = document.getElementById("selectSystems"); //Will appear twice in the dropdown
+    let joblist = [];
+    let jobinfo = [];
+    let jobsystem = [];
+    let jobdate = [];
+
+    let announcementType = [];
+    let announcement = [];
+
+    let currentJobName = "";
+    let currentJobSystem = "";
+    const j = query(collection(db, "Job"))
+    const unsub = onSnapshot(j, (querySnapshot) => {
+        const response = querySnapshot.docs.map(doc => doc.data());
+        response.forEach(element => {
+            joblist.push(element.JobName);
+            jobinfo.push(element.Information);
+            jobsystem.push(element.SystemName);
+            jobdate.push(element.Deadline);
+        });
+    });
+    const s = query(collection(db, "Systems"))
+    const unsubb = onSnapshot(s, (querySnapshot) => {
+        const response = querySnapshot.docs.map(doc => doc.data());
+        response.forEach(element => {
+            var opt = element.name;
+            var el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            select.appendChild(el);
+
+            //This function removes duplicates from the SELECT list
+            [].slice.call(select.options)
+                .map(function (a) {
+                    if (this[a.value]) {
+                        select.removeChild(a);
+                    } else {
+                        this[a.value] = 1;
+                    }
+                }, {});
+
+
+        });
+    });
+    const a = query(collection(db, "Announcement"))
+    const unsubbb = onSnapshot(a, (querySnapshot) => {
+        const response = querySnapshot.docs.map(doc => doc.data());
+        response.forEach(element => {
+            announcementType.push(element.AnnouncementType);
+            announcement.push(element.Announcement);
+        });
+    });
+
+    //Our variables for the two different fields that we'll use later on to create systems and jobs
     const [user] = useAuthState(auth);
     const [SystemName, setSystemName] = useState("");
     const [SystemLead, setSystemLead] = useState("");
@@ -21,12 +77,25 @@ function Pop() {
     const [currentUser, setcurrentUser] = useState("");
     let currentJobName = "";
     let currentJobSystem = "";
-
+  
     const [SystemSelection, setSystemSelection] = useState("");
     const [SystemJobName, setSystemJobName] = useState("");
     const [Information, setInformation] = useState("");
     const [Deadline, setDeadline] = useState("");
-    
+  
+    const [AnnouncementType, setAnnouncementType] = useState("");
+    const [Announcement, setAnnouncement] = useState("");
+
+    // creation of announcements function
+    const CreateA = () => {
+        if (!AnnouncementType || !Announcement) {
+            alert("Please enter all the fields");
+        }
+        else{
+            createAnnouncement(AnnouncementType, Announcement);
+        }
+    }
+
     //creation of systems function
     const CreateS = () => {
         if (!SystemName || !SystemLead || !SystemDescription || !Systemimg) {
@@ -271,7 +340,6 @@ function Pop() {
 
                     <div class="Announcements">
                         <h1 class="copyCenter">Announcements</h1>
-
                         <div class="box warning" >
                             <div class="closeArea" id="warning"><p class="copyRight"></p></div>
                             <div class="copyArea"><p><strong>Urgent Notice:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
@@ -292,6 +360,21 @@ function Pop() {
                             <div class="closeArea" id="warning"><p class="copyRight"></p></div>
                             <div class="copyArea"><p><strong>Hours Update:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
                         </div>
+                        <Button variant="outlined" name="addTaskBtn" onClick={CreateA}>Create Announcement</Button>
+                        <input
+                            type="text"
+                            className="AnnouncementType"
+                            value={AnnouncementType}
+                            onChange={(e) => setAnnouncementType(e.target.value)}
+                            placeholder="Enter Announcement Type"
+                        />
+                        <input
+                            type="text"
+                            className="Announcement"
+                            value={Announcement}
+                            onChange={(e) => setAnnouncement(e.target.value)}
+                            placeholder="Enter Announcement"
+                        />
                     </div>
                 </div>
 

@@ -191,6 +191,16 @@ a:hover {
   height: fit-content;
 }
 
+.AnnouncementType{
+  margin: 1%;
+  height: 15%;
+}
+
+.Announcement{
+  margin: 1%;
+  height: 15%;
+}
+
 #menu {
   height: 380px;
   width: 720px;

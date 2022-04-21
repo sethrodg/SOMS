@@ -144,6 +144,17 @@ const createJob = async (Sname, Jname, info, date) => {
   }
 }
 
+const createAnnouncement = async (Atype, Ainfo) => {
+  try {
+    await addDoc(collection(db, "Announcement"), {
+      AnnouncementType: Atype,
+      Announcement: Ainfo
+    });
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+}
 
 const sendPasswordReset = async (email) => {
   try {
@@ -167,5 +178,6 @@ export {
   logout,
   createSystem,
   createJob,
+  createAnnouncement,
   addPosition
 };

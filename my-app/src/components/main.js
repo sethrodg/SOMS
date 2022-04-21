@@ -9,6 +9,7 @@ import {
     auth,
     createSystem,
     createJob,
+    createAnnouncement,
     addPosition,
 } from '../firebase';
 function Pop() {
@@ -17,6 +18,10 @@ function Pop() {
     let jobinfo = [];
     let jobsystem = [];
     let jobdate = [];
+
+    let announcementType = [];
+    let announcement = [];
+
     let currentJobName = "";
     let currentJobSystem = "";
     const j = query(collection(db, "Job"))
@@ -52,7 +57,16 @@ function Pop() {
 
         });
     });
-    //Our variables for the two different fields that we'll use later on to create sysmems and jobs
+    const a = query(collection(db, "Announcement"))
+    const unsubbb = onSnapshot(a, (querySnapshot) => {
+        const response = querySnapshot.docs.map(doc => doc.data());
+        response.forEach(element => {
+            announcementType.push(element.AnnouncementType);
+            announcement.push(element.Announcement);
+        });
+    });
+
+    //Our variables for the two different fields that we'll use later on to create systems and jobs
     const [user] = useAuthState(auth);
     const [SystemName, setSystemName] = useState("");
     const [SystemLead, setSystemLead] = useState("");
@@ -63,6 +77,20 @@ function Pop() {
     const [SystemJobName, setSystemJobName] = useState("");
     const [Information, setInformation] = useState("");
     const [Deadline, setDeadline] = useState("");
+
+    const [AnnouncementType, setAnnouncementType] = useState("");
+    const [Announcement, setAnnouncement] = useState("");
+
+    // creation of announcements function
+    const CreateA = () => {
+        if (!AnnouncementType || !Announcement) {
+            alert("Please enter all the fields");
+        }
+        else{
+            createAnnouncement(AnnouncementType, Announcement);
+        }
+    }
+
     //creation of systems function
     const CreateS = () => {
         if (!SystemName || !SystemLead || !SystemDescription || !Systemimg) {
@@ -259,7 +287,6 @@ function Pop() {
 
                     <div class="Announcements">
                         <h1 class="copyCenter">Announcements</h1>
-
                         <div class="box warning" >
                             <div class="closeArea" id="warning"><p class="copyRight"></p></div>
                             <div class="copyArea"><p><strong>Urgent Notice:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
@@ -280,6 +307,21 @@ function Pop() {
                             <div class="closeArea" id="warning"><p class="copyRight"></p></div>
                             <div class="copyArea"><p><strong>Hours Update:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
                         </div>
+                        <Button variant="outlined" name="addTaskBtn" onClick={CreateA}>Create Announcement</Button>
+                        <input
+                            type="text"
+                            className="AnnouncementType"
+                            value={AnnouncementType}
+                            onChange={(e) => setAnnouncementType(e.target.value)}
+                            placeholder="Enter Announcement Type"
+                        />
+                        <input
+                            type="text"
+                            className="Announcement"
+                            value={Announcement}
+                            onChange={(e) => setAnnouncement(e.target.value)}
+                            placeholder="Enter Announcement"
+                        />
                     </div>
                 </div>
 

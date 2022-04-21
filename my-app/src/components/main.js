@@ -319,7 +319,7 @@ function Pop() {
                             <div class="closeArea" id="warning"><p class="copyRight"></p></div>
                             <div class="copyArea"><p><strong>Hours Update:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
                         </div>
-                        <Button variant="outlined" name="addTaskBtn" onClick={CreateA}>Create Announcement</Button>
+                        <Button variant="outlined" id="AnnouncementBtn" name="addTaskBtn" onClick={CreateA}>Create Announcement</Button>
                         <input
                             type="text"
                             className="AnnouncementType"

@@ -1,12 +1,12 @@
-.container {
+.box {
   flex-direction: row;
   flex-wrap: wrap;
   display: flex;
-  padding: 5px;
-  margin: 10px;
-  justify-content: space-evenly;
-  column-gap: 100px;
-  row-gap: 20px;
+  padding: 75px;
+  margin: 75px;
+  /* justify-content: space-evenly; */
+  column-gap: 85px;
+  row-gap: 85px;
 }
 .card{
     width: 350px;

@@ -7,7 +7,7 @@ import "./developers.css"
 const Developers = () => {
    
     return (
-        <div class ="box">
+        <div class ="developer-box">
             <div class="card">
                 <div class="img-name">
                     <img src="Brian.jpg" />

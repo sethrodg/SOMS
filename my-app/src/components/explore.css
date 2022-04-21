@@ -62,8 +62,12 @@
   align-items: center;
   background-color: rgb(243, 243, 243);
   border-radius: 2%;
+  justify-content: space-between;
 }
-
+/* This is something specific for the last slide in our explore page, so that the text is centered */
+#testing{
+justify-content: center;
+}
 .SystemTitle {
   font-size: xx-large;
   font-weight: bolder;

@@ -11,36 +11,34 @@ const navbar = () => {
         logout();
     };
     return (
-        <div class="Body">
-            <div class="home">
-                <Nav.Link href="/">
-                    <Button variant="outlined" >Home</Button>
-                </Nav.Link>
-            </div>
-            <div class="explore">
-                <Nav.Link href="/explore">
-                    <Button variant="outlined" >Explore</Button>
-                </Nav.Link>
-            </div>
-            <div class="developers">
-                <Nav.Link href="/developers">
-                    <Button variant="outlined" >Developers</Button>
-                </Nav.Link>
-            </div>
-            <div class="login">
-                <Nav.Link href="/login">
-                    <Button variant="outlined" >Login</Button>
-                </Nav.Link>
-            </div>
-            <div class="signup">
-                <Nav.Link href="/signup">
-                    <Button variant="outlined" >signup</Button>
-                </Nav.Link>
-            </div>
-            <div class="logout">
-                <Nav.Link href="/">
-                    <Button variant="outlined" onClick={logO} >Log out</Button>
-                </Nav.Link>
+        <div class="navbarbody">
+            <div class = "testing">
+                    <nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+                    {/* <!-- Brand and toggle get grouped for better mobile display --> */}
+                    <div class="container">
+                        {/* <!-- Menu responsivo --> */}
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                            </button>
+                            {/* <!-- Logo --> */}
+                            <a class="navbar-brand myLogo" href="/"><span>SOMS</span></a>
+                        </div>
+
+                        {/* <!-- Collect the nav links, forms, and other content for toggling --> */}
+                        <div class="collapse navbar-collapse" id="navbarCollapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="active"><a href="/">Home</a></li>
+                                <li><a href="/explore">Explore</a></li>
+                                <li><a href="/developers">Developers</a></li>
+                                <li><a href="/login">Login</a></li>
+                                <li><a href="/signup">Signup</a></li>
+                                <li><a href="/" onClick={logO}>Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
             </div>
         </div >
     );

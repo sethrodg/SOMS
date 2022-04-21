@@ -29,6 +29,12 @@ body {
   justify-content: center;
   visibility: show;
 }
+#TaskBtn:hover{
+  background-color: #EBB9D2;
+}
+#CreateJobBtn:hover{
+  background-color: #EBB9D2;
+}
 
 .pop_main {
   display: flex;
@@ -39,10 +45,6 @@ body {
   margin: 2.4%;
   visibility: show;
 }
-
-
-
-
 
 a,
 a:visited {
@@ -110,9 +112,6 @@ a:hover {
   border-radius: 3px;
 }
 
-
-
-
 .vf-table .demo {
   min-width: 25em;
   font-size: 2.625em;
@@ -144,7 +143,7 @@ a:hover {
   height: 15%;
 }
 
-.SystemDescription {
+.Job_Description {
   margin: 1%;
   height: 15%;
 }
@@ -277,8 +276,10 @@ a:hover {
 #EnrollBtn {
   margin: 5%;
   border-radius: 5px;
-  background-color: beige;
   box-shadow: 2px 2px 2px rgb(119, 119, 119);
+}
+#EnrollBtn:hover{
+  background-color: #EBB9D2;
 }
 
 #previous-option {
@@ -325,4 +326,130 @@ a:hover {
   z-index: 101;
   position: absolute;
   transform: translate(140px, 0);
+}
+
+/* Global */
+
+/* Gallery */
+
+.gallery {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 80%;
+  max-height: 25vw;
+  overflow: hidden;
+}
+
+.gallery:before,
+.gallery:after {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 20%;
+  height: 100%;
+  z-index: 3;
+}
+
+.gallery:before {
+  left: 0;
+  background: linear-gradient(to right, rgb(199, 199, 199) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.gallery:after {
+  right: 0;
+  background: linear-gradient(to left, rgb(199, 199, 199) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.gallery__stream {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 100%;
+}
+
+.gallery__item {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+  transition: 1s all ease;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(243, 243, 243);
+  border-radius: 2%;
+}
+
+.JobTitle {
+  font-size: xx-large;
+  font-weight: bolder;
+}
+
+.System_Photo {
+  height: 20vw;
+  width: 20vw;
+}
+
+.Job_Description {
+  font-size: medium;
+  font-weight: lighter;
+}
+
+.gallery__item:nth-child(1) {
+  left: 0;
+  z-index: 1;
+  transform: translateX(-100%) scale(.8);
+}
+
+.gallery__item:nth-child(2) {
+  left: 0;
+  z-index: 2;
+  transform: translateX(-50%) scale(.8);
+}
+
+.gallery__item:nth-child(3) {
+  left: 50%;
+  z-index: 4;
+  transform: translateX(-50%) scale(1);
+}
+
+.gallery__item:nth-child(4) {
+  left: 100%;
+  z-index: 2;
+  transform: translateX(-50%) scale(.8);
+}
+
+.gallery__item:nth-child(n+5) {
+  left: 100%;
+  z-index: 1;
+  transform: scale(.8);
+}
+
+/* Controllers */
+
+.gallery__prev,
+.gallery__next {
+  position: absolute;
+  top: 50%;
+  z-index: 4;
+  width: 50%;
+  height: 100%;
+  transform: translateX(-50%) translateY(-50%) scale(.8);
+  cursor: pointer;
+}
+
+.gallery__prev {
+  left: 0;
+}
+
+.gallery__next {
+  left: 100%;
 }

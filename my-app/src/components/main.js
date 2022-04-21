@@ -1,4 +1,4 @@
-import { Avatar, Button, Checkbox, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@mui/material'
+import { Button, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react';
 import { doc, onSnapshot, collection, query, where } from "firebase/firestore";
 import { db } from '../firebase';
@@ -13,6 +13,8 @@ import {
     addPosition,
 } from '../firebase';
 function Pop() {
+    //Our variables for the two different fields that we'll use later on to create sysmems and jobs
+
     let select = document.getElementById("selectSystems"); //Will appear twice in the dropdown
     let joblist = [];
     let jobinfo = [];
@@ -72,12 +74,15 @@ function Pop() {
     const [SystemLead, setSystemLead] = useState("");
     const [SystemDescription, setSystemDescription] = useState("");
     const [Systemimg, setSystemimg] = useState("");
-
+    const [currentUser, setcurrentUser] = useState("");
+    let currentJobName = "";
+    let currentJobSystem = "";
+  
     const [SystemSelection, setSystemSelection] = useState("");
     const [SystemJobName, setSystemJobName] = useState("");
     const [Information, setInformation] = useState("");
     const [Deadline, setDeadline] = useState("");
-
+  
     const [AnnouncementType, setAnnouncementType] = useState("");
     const [Announcement, setAnnouncement] = useState("");
 
@@ -111,11 +116,14 @@ function Pop() {
     };
     //function to update the user's positions that they're enrolled in as well as the systems they're interested in
     const UpdateP = () => {
-        if (!user) {
-            alert("Please log in or select a job to enroll in");
+        console.log("something");
+        if(!user){
+            console.log("no user");
+            alert("Please sign in to update your positions");
         }
-        //console.log(user);
-        addPosition(user, currentJobName, currentJobSystem);
+        else{
+            addPosition(user, currentJobName, currentJobSystem);
+        }
     }
     if (user) { //check if user is logged in
         var email = user.email;
@@ -131,7 +139,106 @@ function Pop() {
         var Welcome = "Welcome Guest";
         var email = ""; //setting the email to be blank as there's no current user
     }
+    let select = document.getElementById("selectSystems"); //Will appear twice in the dropdown
+    let joblist = [];
+    let jobinfo = [];
+    let jobsystem = [];
+    let jobdate = [];
+    const s = query(collection(db, "Systems"))
+    const unsubb = onSnapshot(s, (querySnapshot) => {
+        const response = querySnapshot.docs.map(doc => doc.data());
+        response.forEach(element => {
+            var opt = element.name;
+            var el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            select.appendChild(el);
 
+            //This function removes duplicates from the SELECT list
+            [].slice.call(select.options)
+                .map(function (a) {
+                    if (this[a.value]) {
+                        select.removeChild(a);
+                    } else {
+                        this[a.value] = 1;
+                    }
+                }, {});
+
+
+        });
+    });
+    const j = query(collection(db, "Job"))
+    const unsub = onSnapshot(j, (querySnapshot) => {
+        const response = querySnapshot.docs.map(doc => doc.data());
+        response.forEach(element => {
+            joblist.push(element.JobName);
+            jobinfo.push(element.Information);
+            jobsystem.push(element.SystemName);
+            jobdate.push(element.Deadline);
+        });
+        // var counter = 0;
+        // joblist.forEach(item => {
+        //     let parentnode = document.getElementById("div1"); //make the parent node
+        //     let child = document.createElement("div"); //make the child
+        //     child.classList = "gallery__item"; //give the child the class (gallery__item) is what's used in CSS to make it all work across the board
+        //     child.id = "gallery__item" + counter; //needed to create an id so that we're able to target the specific job when we click on it.
+        //     let jobtitle = document.createElement("div"); //giving the child some content
+        //     jobtitle.classList = "JobTitle"; //making a class for the title of the jobtitles
+        //     let titletext = document.createTextNode(item);
+        //     jobtitle.appendChild(titletext); //appending the text to a div
+        //     let systemdesc = document.createElement("div"); //making a div for the description for the systems
+        //     systemdesc.classList = "Job_Description";
+        //     let desctext = document.createTextNode(jobinfo[counter]);
+        //     systemdesc.appendChild(desctext); //appending the text to a div
+        //     let Jsystem = document.createElement("div");
+        //     Jsystem.classList = "Job_System";
+        //     let systemtext = document.createTextNode(jobsystem[counter]);
+        //     let enrollBtn = document.createElement("button");
+        //     Jsystem.appendChild(systemtext);
+        //     let duedate = document.createElement("div");
+        //     duedate.classList = "Job_Duedate";
+        //     let duedatetext = document.createTextNode(jobdate[counter]);
+        //     duedate.appendChild(duedatetext);
+        //     enrollBtn.classList = "enrollBtn";
+        //     enrollBtn.innerHTML = "Enroll";
+
+        //     child.appendChild(Jsystem);
+        //     child.appendChild(jobtitle);
+        //     child.appendChild(systemdesc);
+        //     child.appendChild(duedate);
+        //     enrollBtn.addEventListener("click", function (){
+        //         currentJobName = item;
+        //         console.log(currentJobName);
+        //         currentJobSystem = document.getElementById(child.id).getElementsByClassName("Job_Description")[0].innerHTML;
+        //         console.log(currentJobSystem); //this doesn't work. it says that there's no user that's currently logged in (this might be an async issue with javascript)
+        //         //getinfo(user, currentJobName, currentJobSystem);
+        //     });
+        //     //enrollBtn.addEventListener("click", UpdateP); //item, document.getElementById(child.id).getElementsByClassName("Job_Description")[0].innerHTML )}); 
+        //     child.append(enrollBtn);
+        //     parentnode.appendChild(child); // finally appending all the children nodes holding the content to the parent carousel card.
+        //     counter += 1; //incrementing counter to ensure we pair the correct description + image with the system
+        // });
+    });
+    // document.addEventListener('DOMContentLoaded', function () { //this is for the carousel
+    //     var stream = document.querySelector('.gallery__stream');
+    //     var items = document.querySelectorAll('.gallery__item');
+
+    //     var prev = document.querySelector('.gallery__prev');
+    //     prev.addEventListener('click', function () {
+    //         stream.insertBefore(items[items.length - 1], items[0]);
+    //         items = document.querySelectorAll('.gallery__item');
+    //     });
+
+    //     var next = document.querySelector('.gallery__next');
+    //     next.addEventListener('click', function () {
+    //         stream.appendChild(items[0]);
+    //         items = document.querySelectorAll('.gallery__item');
+    //     });
+    // });
+    //if the user is an admin then we'll have to hide the system creation as well as the job creation
+    const testingtasking = document.getElementsByClassName("Tasking");
+    const testingjobs = document.getElementsByClassName("Jobs");
+    //testingtasking.style.background = "#FE9968"; //this doesn't work, cannot use .style to try and alter css for that specific class = we can't hide it this way
     //This is all the code for the carosel
     const color_options = ["#EBB9D2", "#FE9968", "#7FE0EB", "#6CE5B1"];
     const image_options = [
@@ -201,58 +308,6 @@ function Pop() {
     };
     //prepping for transfer of vertical carousel to the horizontal one that we have in the explore page as it's easier to look through the list
     //the current option in this case would be the third one from the first one ie(0,1,2). 2 would be the one that the user sees and is the one that's front and center
-    // const s = query(collection(db, "Systems"))
-    // const unsubb = onSnapshot(s, (querySnapshot) => {
-    //     const response = querySnapshot.docs.map(doc => doc.data());
-    //     response.forEach(element => {
-    //         var sysname = element.name;
-    //         var syslead = element.systemlead;
-    //         var sysdesc = element.Description;
-    //         var sysimg = element.ImageURL;
-    //         systemnames.push(sysname);
-    //         systemlead.push(syslead);
-    //         systemdescription.push(sysdesc);
-    //         systemimg.push(sysimg);
-    //     });
-    //     var counter = 0; //needed a counter as we're implementing the promises due to javascript with its async functionality.
-    //     systemnames.forEach(item => {
-    //         let parentnode = document.getElementById("div1"); //make the parent node
-    //         let child = document.createElement("div"); //make the child
-    //         child.classList = "gallery__item"; //give the child the class (gallery__item) is what's used in CSS to make it all work across the board
-    //         let system = document.createElement("div"); //giving the child some content
-    //         system.classList = "SystemTitle"; //making a class for the title of the systems
-    //         let titletext = document.createTextNode(item);
-    //         system.appendChild(titletext); //appending the text to a div
-    //         let systemphoto = document.createElement("img"); //creating an image for each carousel.
-    //         systemphoto.classList = "System_Photo";
-    //         systemphoto.src = systemimg[counter]; //just a placeholder for images that are specific to the system
-    //         let systemdesc = document.createElement("div"); //making a div for the description for the systems
-    //         systemdesc.classList = "System_Description";
-    //         let desctext = document.createTextNode(systemdescription[counter]);
-    //         systemdesc.appendChild(desctext); //appending the text to a div
-    //         child.appendChild(system);
-    //         child.appendChild(systemphoto);
-    //         child.appendChild(systemdesc);
-    //         parentnode.appendChild(child); // finally appending all the children nodes holding the content to the parent carousel card.
-    //         counter += 1; //incrementing counter to ensure we pair the correct description + image with the system
-    //     });
-    // });
-    // document.addEventListener('DOMContentLoaded', function () {
-    //     var stream = document.querySelector('.gallery__stream');
-    //     var items = document.querySelectorAll('.gallery__item');
-
-    //     var prev = document.querySelector('.gallery__prev');
-    //     prev.addEventListener('click', function () {
-    //         stream.insertBefore(items[items.length - 1], items[0]);
-    //         items = document.querySelectorAll('.gallery__item');
-    //     });
-
-    //     var next = document.querySelector('.gallery__next');
-    //     next.addEventListener('click', function () {
-    //         stream.appendChild(items[0]);
-    //         items = document.querySelectorAll('.gallery__item');
-    //     });
-    // });
     return (
         <>
 
@@ -260,30 +315,28 @@ function Pop() {
                 <div>
                     <h3 className="pop_nf_h3">{Welcome}</h3>
                 </div>
+                {/* <div class="gallery">
+                    <div class="gallery__prev"></div>
+                    <div class="gallery__next"></div>
+                    <div class="gallery__stream" id="div1">
+                        <div id="testing" class="gallery__item">Thank you for looking through all of the jobs we have! </div>
+                    </div>
+                </div> */}
                 <div className="pop_main">
                     <div id="carousel-wrapper">
                         <div id="menu">
-                            <div id="current-option">
+                             <div id="current-option">
                                 <span id="current-option-systemname" data-previous-text="" data-next-text=""></span>
                                 <span id="current-option-jobname" data-previous-text="" data-next-text=""></span>
                                 <span id="current-option-information" data-previous-text="" data-next-text=""></span>
                                 <span id="current-option-deadline" data-previous-text="" data-next-text=""></span>
                                 <Button variant="outlined" id="EnrollBtn" onClick={UpdateP}>Enroll</Button>
-                            </div>
+                            </div> 
                             <div id="image"></div>
                             <button id="previous-option" onClick={PreviousOption}></button>
                             <button id="next-option" onClick={NextOption}></button>
                         </div>
                     </div>
-                    {/*                     
-                    <div class="gallery">
-                        <div class="gallery__prev"></div>
-                        <div class="gallery__next"></div>
-                        <div class="gallery__stream" id="div1">
-                            <div id="testing" class="gallery__item">Thank you for looking through all of the jobs we have! </div>
-                        </div>
-                    </div> */}
-
 
                     <div class="Announcements">
                         <h1 class="copyCenter">Announcements</h1>
@@ -326,7 +379,7 @@ function Pop() {
                 </div>
 
                 <div className="Tasking">
-                    <Button variant="outlined" name="addTaskBtn" onClick={CreateS}>Create System</Button>
+                    <Button variant="outlined" id = "TaskBtn" name="addTaskBtn" onClick={CreateS}>Create System</Button>
                     <input
                         type="text"
                         className="SystemName"
@@ -350,11 +403,10 @@ function Pop() {
                     />
                     <textarea className="SystemDescription" rows="4" cols="25" value={SystemDescription} onChange={(e) => setSystemDescription(e.target.value)} placeholder="Enter System Description">
                     </textarea>
-
-
                 </div>
+
                 <div className="Jobs">
-                    <Button variant="outlined" name="addTaskBtn" onClick={CreateJ}>Create Job</Button>
+                    <Button variant="outlined" id = "CreateJobBtn" name="addTaskBtn" onClick={CreateJ}>Create Job</Button>
 
                     <select id="selectSystems" onChange={(e) => setSystemSelection(e.target.value)}>
                         <option>--Choose System--</option>

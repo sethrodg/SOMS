@@ -1,17 +1,17 @@
-.container {
+.developer-box {
   flex-direction: row;
   flex-wrap: wrap;
   display: flex;
-  padding: 5px;
-  margin: 10px;
-  justify-content: space-around;
-  column-gap: 100px;
-  row-gap: 20px;
+  padding: 75px;
+  margin: 75px;
+  /* justify-content: space-evenly; */
+  column-gap: 85px;
+  row-gap: 85px;
 }
 .card{
     width: 350px;
     height: 400px;
-    margin-top: 100px;
+    margin-top: 10px;
     border-radius: 20px;
     margin-left: auto;
     margin-right: auto;
@@ -41,11 +41,10 @@
 }
 .img-name h2{
     text-align: center;
-    padding: 16px;
 }
 .followers{
     height: 140px;
-    padding-top: 50px;
+    padding-top: 15px;
    
 }
 .followers h3{

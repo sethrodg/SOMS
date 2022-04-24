@@ -1,5 +1,5 @@
 body {
-  background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+  background-image: linear-gradient(to top, #474747 0%, #212121 100%);
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 40vw;
@@ -11,6 +11,7 @@ body {
   justify-content: center;
   font-size: xx-large;
   font-weight: 600;
+  color: #F05557;
 }
 
 .filloutpage {
@@ -29,11 +30,23 @@ body {
   justify-content: center;
   visibility: show;
 }
-#TaskBtn:hover{
-  background-color: #EBB9D2;
+
+#TaskBtn {
+  color: beige;
+  box-shadow: 2px 2px 2px rgb(119, 119, 119);
 }
-#CreateJobBtn:hover{
-  background-color: #EBB9D2;
+
+#TaskBtn:hover {
+  background-color: #F05557;
+}
+
+#CreateJobBtn {
+  color: beige;
+  box-shadow: 2px 2px 2px rgb(119, 119, 119);
+}
+
+#CreateJobBtn:hover {
+  background-color: #F05557;
 }
 
 .pop_main {
@@ -57,6 +70,7 @@ a:hover {
 
 .copyCenter {
   text-align: center;
+  color: #F05557;
 }
 
 .copyRight {
@@ -66,6 +80,15 @@ a:hover {
 .Announcements {
   max-width: 1000px;
   margin: 0 auto;
+}
+
+#AnnouncementBtn {
+  color: beige;
+  box-shadow: 2px 2px 2px rgb(119, 119, 119);
+}
+
+#AnnouncementBtn:hover {
+  background-color: #F05557;
 }
 
 .box {
@@ -191,12 +214,12 @@ a:hover {
   height: fit-content;
 }
 
-.AnnouncementType{
+.AnnouncementType {
   margin: 1%;
   height: 15%;
 }
 
-.Announcement{
+.Announcement {
   margin: 1%;
   height: 15%;
 }
@@ -276,10 +299,12 @@ a:hover {
 #EnrollBtn {
   margin: 5%;
   border-radius: 5px;
+  color: beige;
   box-shadow: 2px 2px 2px rgb(119, 119, 119);
 }
-#EnrollBtn:hover{
-  background-color: #EBB9D2;
+
+#EnrollBtn:hover {
+  background-color: #F05557;
 }
 
 #previous-option {

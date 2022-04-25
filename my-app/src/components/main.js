@@ -26,6 +26,15 @@ function Pop() {
 
     let currentJobName = "";
     let currentJobSystem = "";
+
+    /**
+     * @Function unsub
+     * @description Fill arrays with elements from Database to push to Job Carousel
+     * @var joblist: Job Name
+     * @var jobinfo: Job Information
+     * @var jobsystem: System Name the job belongs to
+     * @var jobdate Job due date
+     */
     const j = query(collection(db, "Job"))
     const unsub = onSnapshot(j, (querySnapshot) => {
         const response = querySnapshot.docs.map(doc => doc.data());
@@ -36,6 +45,10 @@ function Pop() {
             jobdate.push(element.Deadline);
         });
     });
+    /**
+     * @function unsubb
+     * @description Create Dropdown for reading the current systems from Database. This is used for Job Creation 
+     */
     const s = query(collection(db, "Systems"))
     const unsubb = onSnapshot(s, (querySnapshot) => {
         const response = querySnapshot.docs.map(doc => doc.data());
@@ -59,6 +72,10 @@ function Pop() {
 
         });
     });
+    /**
+     * @function unsubbb
+     * @summary Push Announcements from Database to Announcement Carousel
+     */
     const a = query(collection(db, "Announcement"))
     const unsubbb = onSnapshot(a, (querySnapshot) => {
         const response = querySnapshot.docs.map(doc => doc.data());
@@ -111,7 +128,11 @@ function Pop() {
             createJob(SystemSelection, SystemJobName, Information, Deadline);
         }
     };
-    //function to update the user's positions that they're enrolled in as well as the systems they're interested in
+
+    /**
+     * @function UpdateP
+     * @summary update the user's positions that they're enrolled in as well as the systems they're interested in
+     */
     const UpdateP = () => {
         console.log("something");
         if (!user) {

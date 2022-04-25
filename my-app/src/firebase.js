@@ -72,6 +72,7 @@ const logInWithEmailAndPassword = async (email, password) => {
  * @param {string} name FName LName
  * @param {string} email emailformatting @xxxx.com
  * @param {HashedString} password 
+ * @summary When a user is first registered their initial role will be "Volunteer"
  */
 const registerWithEmailAndPassword = async (name, email, password) => { //changed the document id to the user.uid instead of the auto genereated id 
   try{

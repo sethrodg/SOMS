@@ -100,7 +100,9 @@ function Pop() {
     const [AnnouncementType, setAnnouncementType] = useState("");
     const [Announcement, setAnnouncement] = useState("");
 
-    // creation of announcements function
+    /**
+     * @description Buffer to prevent empty fields from being passed to createAnnouncement
+     */
     const CreateA = () => {
         if (!AnnouncementType || !Announcement) {
             alert("Please enter all the fields");
@@ -110,7 +112,9 @@ function Pop() {
         }
     }
 
-    //creation of systems function
+    /**
+     * @description Buffer to prevent empty fields being passed to CreateSystem
+     */
     const CreateS = () => {
         if (!SystemName || !SystemLead || !SystemDescription || !Systemimg) {
             alert("Please enter all the fields");
@@ -119,7 +123,10 @@ function Pop() {
             createSystem(SystemName, SystemLead, SystemDescription, Systemimg);
         }
     }
-    //creation of jobs\tasks function
+    
+    /**
+     * @description Buffer to prevent empty fields being passed to CreateJob
+     */
     const CreateJ = () => {
         if (!Deadline || !SystemJobName || !Information || !SystemSelection) {
             alert("Please enter all the fields");

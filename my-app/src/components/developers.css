@@ -1,14 +1,15 @@
 .developer-box {
-  flex-direction: row;
-  flex-wrap: wrap;
-  display: flex;
-  padding: 75px;
-  margin: 75px;
-  /* justify-content: space-evenly; */
-  column-gap: 85px;
-  row-gap: 85px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: flex;
+    padding: 75px;
+    margin: 75px;
+    /* justify-content: space-evenly; */
+    column-gap: 85px;
+    row-gap: 85px;
 }
-.card{
+
+.card {
     width: 350px;
     height: 400px;
     margin-top: 10px;
@@ -16,20 +17,22 @@
     margin-left: auto;
     margin-right: auto;
     border: 5px solid #fff1eb;
-    background-color: rgb(234, 241, 247);
+    background-color: rgb(151, 151, 151);
     color: rgb(51, 48, 48);
 }
-.img-name{
+
+.img-name {
     width: 100%;
     height: 210px;
-    
+
     margin-left: auto;
     margin-right: auto;
     margin-top: -75px;
-    
+
     border-bottom: 5px solid #fff1eb;
 }
-.img-name img{
+
+.img-name img {
     display: block;
     width: 150px;
     height: 150px;
@@ -39,31 +42,34 @@
     border: 5px solid #fff1eb;
     background-color: #fff1eb;
 }
-.img-name h2{
+
+.img-name h2 {
     text-align: center;
 }
-.followers{
+
+.followers {
     height: 140px;
     padding-top: 15px;
-   
+
 }
-.followers h3{
+
+.followers h3 {
     text-align: center;
     padding: 8px;
 }
-.button-follow{
-    height: 115px;
-}
-.button-follow  button{
-    display: block;
+
+.button-follow {
+    display: flex;
+    justify-content: center;
     width: 200px;
     margin-left: auto;
     margin-right: auto;
     padding: 16px;
     background-color: #fff1eb;
-     border-radius: 10px;
-     font-size: 18px;
+    border-radius: 10px;
+    font-size: 18px;
 }
-.button-follow button:hover{
-    background-color: #ace0f9;
+
+.button-follow:hover {
+    background-color: salmon;
 }

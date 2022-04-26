@@ -5,9 +5,9 @@ import { doc, onSnapshot, collection, query, where } from "firebase/firestore";
 import { db } from '../firebase';
 import "./developers.css"
 const Developers = () => {
-   
+
     return (
-        <div class ="developer-box">
+        <div class="developer-box">
             <div class="card">
                 <div class="img-name">
                     <img src="Brian.jpg" />
@@ -17,7 +17,7 @@ const Developers = () => {
                     <h3>Senior at the University of Texas at Arlington</h3>
                 </div>
                 <div class="button-follow">
-                    <button>Follow</button>
+                    <a href="https://www.linkedin.com/in/brian-truong-/" target="_blank">Follow</a>
                 </div>
             </div>
 
@@ -30,7 +30,7 @@ const Developers = () => {
                     <h3>Senior at the University of Texas at Arlington</h3>
                 </div>
                 <div class="button-follow">
-                    <button>Follow</button>
+                    <a href="https://www.linkedin.com/in/law-wong/" target="_blank">Follow</a>
                 </div>
             </div>
 
@@ -43,7 +43,7 @@ const Developers = () => {
                     <h3>Junior at the University of Texas at Arlington</h3>
                 </div>
                 <div class="button-follow">
-                    <button>Follow</button>
+                    <a href="https://www.linkedin.com/in/sethrodg/" target="_blank">Follow</a>
                 </div>
             </div>
 
@@ -56,7 +56,7 @@ const Developers = () => {
                     <h3>Junior at the University of Texas at Arlington</h3>
                 </div>
                 <div class="button-follow">
-                    <button>Follow</button>
+                    <a href="https://www.linkedin.com/in/johnny-nguyen-6951ab1b1/" target="_blank">Follow</a>
                 </div>
             </div>
 
@@ -69,7 +69,7 @@ const Developers = () => {
                     <h3>Senior at the University of Texas at Arlington</h3>
                 </div>
                 <div class="button-follow">
-                    <button>Follow</button>
+                    <a href="https://www.linkedin.com/in/chance-huddleston-418865133/" target="_blank">Follow</a>
                 </div>
             </div>
 
@@ -82,12 +82,12 @@ const Developers = () => {
                     <h3>Professor at the University of Texas at Arlington</h3>
                 </div>
                 <div class="button-follow">
-                    <button>Follow</button>
+                    <a href="https://www.linkedin.com/in/todd-rosenkrantz-aa597069/" target="_blank">Follow</a>
                 </div>
             </div>
 
         </div>
-   
+
 
     )
 }

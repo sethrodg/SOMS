@@ -84,7 +84,7 @@ const SignUp = () => {
             label="Remember me"
           />
           <Button type='Submit' color='primary' variant="contained" style={btnstyle} onClick={register} fullWidth>Register!</Button>
-          <Button variant="outlined" startIcon={<Google />} onClick={signInWithGoogle}>Sign Up with Google</Button>
+          {/* <Button variant="outlined" startIcon={<Google />} onClick={signInWithGoogle}>Sign Up with Google</Button> */}
         </Paper>
       </Grid>
     </Grid>

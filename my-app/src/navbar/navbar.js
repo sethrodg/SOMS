@@ -29,7 +29,7 @@ const navbar = () => {
                         {/* <!-- Collect the nav links, forms, and other content for toggling --> */}
                         <div class="collapse navbar-collapse" id="navbarCollapse">
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="active"><a href="/">Home</a></li>
+                                <li><a href="/">Home</a></li>
                                 <li><a href="/explore">Explore</a></li>
                                 <li><a href="/developers">Developers</a></li>
                                 <li><a href="/login">Login</a></li>

@@ -239,6 +239,7 @@ a:hover {
   margin-bottom: 2%;
   border-radius: 5px;
   box-shadow: 2px 7px 7px gray;
+  background-color: salmon;
 }
 
 #current-option {

@@ -67,7 +67,7 @@ const logInWithEmailAndPassword = async (email, password) => {
   }
 };
 const registerWithEmailAndPassword = async (name, email, password) => { //changed the document id to the user.uid instead of the auto genereated id 
-  try{
+  try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
     await setDoc(doc(db, "users", user.uid), { //setDoc used instead of addDoc to avoid the auto generated id
@@ -75,11 +75,12 @@ const registerWithEmailAndPassword = async (name, email, password) => { //change
       name: name,
       email: email,
       authProvider: "local",
-      postion : [],
-      interestedsystems : [],
+      promoted: false,
+      postion: [],
+      interestedsystems: [],
     });
   }
-  catch(err){
+  catch (err) {
     console.error(err);
     alert(err.message);
   }

@@ -126,7 +126,7 @@ function Pop() {
     if (user) { //check if user is logged in
         var email = user.email;
         var admin = false;
-        if (email.slice(-8).includes("@uta.edu")) {
+        if (email.slice(-8).includes("@uta.edu") || user.promoted == true) {
             //checks to see if the last characters have the correct email for admin privledges
             admin = true;
             // setIsActive(true);
@@ -282,7 +282,7 @@ function Pop() {
                     </div>
                 </div>
 
-                <div className={admin? "Tasking" : "Guest"}>
+                <div className={admin ? "Tasking" : "Guest"}>
                     <Button variant="outlined" id="TaskBtn" name="addTaskBtn" onClick={CreateS}>Create System</Button>
                     <input
                         type="text"
@@ -309,7 +309,7 @@ function Pop() {
                     </textarea>
                 </div>
 
-                <div className={admin? "Jobs" : "Guest"}>
+                <div className={admin ? "Jobs" : "Guest"}>
                     <Button variant="outlined" id="CreateJobBtn" name="addTaskBtn" onClick={CreateJ}>Create Job</Button>
 
                     <select id="selectSystems" onChange={(e) => setSystemSelection(e.target.value)}>

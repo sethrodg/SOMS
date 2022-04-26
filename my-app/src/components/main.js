@@ -264,21 +264,24 @@ function Pop() {
                             <div class="closeArea" id="warning"><p class="copyRight"></p></div>
                             <div class="copyArea"><p><strong>Hours Update:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
                         </div>
-                        <Button variant="outlined" id="AnnouncementBtn" name="addTaskBtn" onClick={CreateA}>Create Announcement</Button>
-                        <input
-                            type="text"
-                            className="AnnouncementType"
-                            value={AnnouncementType}
-                            onChange={(e) => setAnnouncementType(e.target.value)}
-                            placeholder="Enter Announcement Type"
-                        />
-                        <input
-                            type="text"
-                            className="Announcement"
-                            value={Announcement}
-                            onChange={(e) => setAnnouncement(e.target.value)}
-                            placeholder="Enter Announcement"
-                        />
+
+                        <div className={admin? "" : "Guest"}>
+                            <Button variant="outlined" id="AnnouncementBtn" name="addTaskBtn" onClick={CreateA}>Create Announcement</Button>
+                            <input
+                                type="text"
+                                className="AnnouncementType"
+                                value={AnnouncementType}
+                                onChange={(e) => setAnnouncementType(e.target.value)}
+                                placeholder="Enter Announcement Type"
+                            />
+                            <input
+                                type="text"
+                                className="Announcement"
+                                value={Announcement}
+                                onChange={(e) => setAnnouncement(e.target.value)}
+                                placeholder="Enter Announcement"
+                            />
+                        </div>
                     </div>
                 </div>
 

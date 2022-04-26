@@ -85,7 +85,7 @@ const Login = () => {
                             </Link>
                         </div>
                     </Typography>
-                    <Button variant="outlined" startIcon={<Google />} onClick={signInWithGoogle} >Continue with Google</Button>
+                    {/* <Button variant="outlined" startIcon={<Google />} onClick={signInWithGoogle} >Continue with Google</Button> */}
                 </Paper>
             </Grid>
         </Grid>

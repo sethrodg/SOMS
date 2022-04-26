@@ -25,6 +25,10 @@ body {
   /* background-color: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%); */
 }
 
+.Guest {
+  visibility: hidden;
+}
+
 .Tasking {
   display: flex;
   justify-content: center;

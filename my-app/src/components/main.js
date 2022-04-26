@@ -82,6 +82,7 @@ function Pop() {
 
     const [AnnouncementType, setAnnouncementType] = useState("");
     const [Announcement, setAnnouncement] = useState("");
+    // const [isActive, setIsActive] = useState(false);
 
     // creation of announcements function
     const CreateA = () => {
@@ -128,6 +129,7 @@ function Pop() {
         if (email.slice(-8).includes("@uta.edu")) {
             //checks to see if the last characters have the correct email for admin privledges
             admin = true;
+            // setIsActive(true);
         }
         console.log(admin)
         var Welcome = "Welcome " + email; //setting the welcome message to be paired with the user's email
@@ -280,7 +282,7 @@ function Pop() {
                     </div>
                 </div>
 
-                <div className="Tasking">
+                <div className={admin? "Tasking" : "Guest"}>
                     <Button variant="outlined" id="TaskBtn" name="addTaskBtn" onClick={CreateS}>Create System</Button>
                     <input
                         type="text"
@@ -307,7 +309,7 @@ function Pop() {
                     </textarea>
                 </div>
 
-                <div className="Jobs">
+                <div className={admin? "Jobs" : "Guest"}>
                     <Button variant="outlined" id="CreateJobBtn" name="addTaskBtn" onClick={CreateJ}>Create Job</Button>
 
                     <select id="selectSystems" onChange={(e) => setSystemSelection(e.target.value)}>

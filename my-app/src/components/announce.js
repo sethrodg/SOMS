@@ -6,12 +6,35 @@ import { db } from '../firebase';
 import "./announce.scss"
 const Announce = () => {
   document.addEventListener("DOMContentLoaded", function(event) { 
+  //var cards = Array.from(document.querySelectorAll(".card"));
   var holder = document.querySelector("#holder");
-  var cards = Array.from(document.querySelectorAll(".card"));
   var up = document.querySelector("#up");
   var down = document.querySelector("#down");
-  // Set the visible range for the 
+  let announcementType = [];
+  let announcement = [];
+  const a = query(collection(db, "Announcement"))
+    const unsubbb = onSnapshot(a, (querySnapshot) => {
+        const response = querySnapshot.docs.map(doc => doc.data());
+        response.forEach(element => {
+            announcementType.push(element.AnnouncementType);
+            announcement.push(element.Announcement);
+        });
+        var counter = 0;
+        announcementType.forEach(item =>{
+          let parentnode = document.getElementById("holder");
+          let child = document.createElement("div");
+          child.classList = "card";
+          let header = document.createTextNode(item);
+          let bodytext = document.createTextNode(counter);
+          child.append(header);
+          child.append(bodytext);
+          parentnode.append(child);
+          counter+=1;
+        });
+    });
+    // Set the visible range for the 
   // cards - Currently 2
+  var cards = Array.from(document.querySelectorAll(".card"));
   var visibles = {
       start: 0,
       end: 1
@@ -86,17 +109,17 @@ const Announce = () => {
       return (
 
     // <html>
-        // <body>
+         <body>
           <div id="holder">
-            <div class="card">
+            <div class="card" id ="first">
                 <h1>Announcement 1</h1>
                 <p>Hello user</p>
             </div>
-            <div class="card">
+            <div class="card" id = "second">
                 <h1>Announcement 2</h1>
                 <p>This is the content for card 2. This makes the body of the card</p>
             </div>
-            <div class="card">
+            {/* <div class="card">
                 <h1>Announcement 3</h1>
                 <p>This is the content for card 3. This makes the body of the card</p>
             </div>
@@ -111,15 +134,14 @@ const Announce = () => {
             <div class="card">
                 <h1>Announcement 6</h1>
                 <p>This is the content for card 6. This makes the body of the card</p>
-            </div>
+            </div> */}
         </div>
-        
-        // {/* <script>
-        //   holder?.addEventListener("mousewheel", scrollAction);
-        //   holder?.addEventListener("DOMMouseScroll", scrollAction);
-        // </script> */}
+        <script src = "./testing.js"> </script>
 
-        // {/* </body> */}
+        </body>
+        
+        
+
 
     )
 

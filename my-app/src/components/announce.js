@@ -24,15 +24,18 @@ const Announce = () => {
             counter += 1;
         });
     });
-
+    let announcementcount = announcement.length;
 
     return (
         // <html>
-        <div>
+        <div class="announcement-container">
             <div class="scrolling-words-container">
                 <div class="scrolling-words-box">
                     <ul>
                         <li id="AnnoucementHeader">Announcements!</li>
+                        <li id="AnnoucementHeader"></li>
+                        <li id="AnnoucementHeader"></li>
+                        <li id="AnnoucementHeader"></li>
                     </ul>
                 </div>
             </div>

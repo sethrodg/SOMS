@@ -66,6 +66,13 @@ function Pop() {
             announcementType.push(element.AnnouncementType);
             announcement.push(element.Announcement);
         });
+        announcement.forEach(item => {
+            let parentnode = document.getElementById("AnnoucementHeader");
+            let child = document.createElement("li");
+            let header = document.createTextNode(item);
+            child.appendChild(header);
+            parentnode.appendChild(child);
+        });
     });
 
     //Our variables for the two different fields that we'll use later on to create systems and jobs
@@ -149,6 +156,15 @@ function Pop() {
         "https://images.unsplash.com/photo-1524721696987-b9527df9e512?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1190&q=80",
         "https://images.unsplash.com/photo-1556656793-08538906a9f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
         "https://images.unsplash.com/photo-1506073828772-2f85239b6d2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80",
+        "https://images.unsplash.com/photo-1523800503107-5bc3ba2a6f81?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
+        "https://images.unsplash.com/photo-1524721696987-b9527df9e512?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1190&q=80",
+        "https://images.unsplash.com/photo-1556656793-08538906a9f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1506073828772-2f85239b6d2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80",
+        "https://images.unsplash.com/photo-1523800503107-5bc3ba2a6f81?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
+        "https://images.unsplash.com/photo-1523800503107-5bc3ba2a6f81?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
+        "https://images.unsplash.com/photo-1524721696987-b9527df9e512?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1190&q=80",
+        "https://images.unsplash.com/photo-1556656793-08538906a9f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
+        "https://images.unsplash.com/photo-1506073828772-2f85239b6d2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80",
         "https://images.unsplash.com/photo-1523800503107-5bc3ba2a6f81?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
     ];
     var i = 0;
@@ -219,6 +235,20 @@ function Pop() {
                 <div>
                     <h3 className="pop_nf_h3">{Welcome}</h3>
                 </div>
+                <div class="announcement-container">
+                    <div class="scrolling-words-container">
+                        <span>Announcements:</span>
+                        <br></br>
+                        <div class="scrolling-words-box">
+                            <ul>
+                                <li id="AnnoucementHeader"></li>
+                                <li id="AnnoucementHeader"></li>
+                                <li id="AnnoucementHeader"></li>
+                                <li id="AnnoucementHeader"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
                 {/* <div class="gallery">
                     <div class="gallery__prev"></div>
                     <div class="gallery__next"></div>
@@ -241,50 +271,24 @@ function Pop() {
                             <button id="next-option" onClick={NextOption}></button>
                         </div>
                     </div>
-
-                    <div class="Announcements">
-                        <h1 class="copyCenter">Announcements</h1>
-                        <div class="box warning" >
-                            <div class="closeArea" id="warning"><p class="copyRight"></p></div>
-                            <div class="copyArea"><p><strong>Urgent Notice:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
-                        </div>
-
-                        <div class="box warning" >
-                            <div class="closeArea" id="warning"><p class="copyRight"></p></div>
-                            <div class="copyArea"><p><strong>Weather Announcement:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
-                        </div>
-
-                        <div class="box warning" >
-                            <div class="closeArea" id="warning"><p class="copyRight"></p></div>
-                            <div class="copyArea"><p><strong>Sign up for our newsletter!</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
-
-                        </div>
-
-                        <div class="box warning" >
-                            <div class="closeArea" id="warning"><p class="copyRight"></p></div>
-                            <div class="copyArea"><p><strong>Hours Update:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, commodi.</p></div>
-                        </div>
-
-                        <div className={admin? "" : "Guest"}>
-                            <Button variant="outlined" id="AnnouncementBtn" name="addTaskBtn" onClick={CreateA}>Create Announcement</Button>
-                            <input
-                                type="text"
-                                className="AnnouncementType"
-                                value={AnnouncementType}
-                                onChange={(e) => setAnnouncementType(e.target.value)}
-                                placeholder="Enter Announcement Type"
-                            />
-                            <input
-                                type="text"
-                                className="Announcement"
-                                value={Announcement}
-                                onChange={(e) => setAnnouncement(e.target.value)}
-                                placeholder="Enter Announcement"
-                            />
-                        </div>
-                    </div>
                 </div>
-
+                <div className={admin ? "" : "Guest"}>
+                    <Button variant="outlined" id="AnnouncementBtn" name="addTaskBtn" onClick={CreateA}>Create Announcement</Button>
+                    <input
+                        type="text"
+                        className="AnnouncementType"
+                        value={AnnouncementType}
+                        onChange={(e) => setAnnouncementType(e.target.value)}
+                        placeholder="Enter Announcement Type"
+                    />
+                    <input
+                        type="text"
+                        className="Announcement"
+                        value={Announcement}
+                        onChange={(e) => setAnnouncement(e.target.value)}
+                        placeholder="Enter Announcement"
+                    />
+                </div>
                 <div className={admin ? "Tasking" : "Guest"}>
                     <Button variant="outlined" id="TaskBtn" name="addTaskBtn" onClick={CreateS}>Create System</Button>
                     <input

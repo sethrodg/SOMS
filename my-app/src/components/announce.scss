@@ -1,0 +1,90 @@
+div#holder {
+    padding-bottom: 30px;
+    padding-top: 30px;
+    position: relative;
+    
+    div.card {
+      margin: 8px auto !important;
+      // width: calc(100vw / 3 - 10px);
+      width: 600px;
+      height: 100px;
+      border-right-width: 12px;
+      border-right-style: solid;
+      
+      // padding: 1px;
+      box-shadow: 2px 5px 8px rgba(0, 0, 0, .5);
+      border-radius: 10px;
+      background: white;
+      text-align:center;
+      animation: popup 0.5 ease;
+      transition: all 0.5s linear;
+      
+      &.fading {
+        position: absolute;
+        right: 0;
+        left: 0;
+        
+        &.f1 {
+          transform: scale(0.95);
+          z-index: -1;
+          
+          &.top {
+            top: 15px;
+          }
+          &.bottom {
+            bottom: 15px;
+          }
+        }
+        
+        &.f2 {
+          opacity: 0.5;
+           transform: scale(0.9);
+           z-index: -2;
+          
+          &.top {
+            top: 0px;
+          }
+          &.bottom {
+            bottom: 0px;
+          }
+        }
+        
+        &.f3 {
+           opacity: 0.0;
+           z-index: -3;
+          
+          &.top {
+            // animation: fadeTop 0.5s ease;
+            top: -15px;
+          }
+          &.bottom {
+            // animation: fadeBottom 0.5s ease;
+            bottom: -15px;
+          }
+        }
+      }
+    }
+  }
+  
+  h1 {
+    margin-bottom: 0;
+  }
+  @keyframes popout {
+      0% {
+          opacity: 0;
+          transform: scale(1);
+          float: inline-start;
+          z-index: 1000;
+      }
+      50% {
+          opacity: 1;
+          transform: scale(1.05);
+          z-index: 1000;
+      }
+      100% {
+          transform: scale(1);
+          z-index: 1;
+          float: none;
+          z-index: 1;
+      }
+  }

@@ -7,6 +7,7 @@ import SignUp from './components/signup';
 import Main from './components/main';
 import Explore from './components/explore';
 import Developers from './components/developers';
+import Announce from './components/announce';
 const App = () => {
   return (
     <Router>
@@ -17,6 +18,7 @@ const App = () => {
         <Route exact path="/signup" element={< SignUp />} />
         <Route exact path="/explore" element={< Explore />} />
         <Route exact path="/developers" element={< Developers />} />
+        <Route exact path="/announce" element={< Announce />} />
       </Routes>
     </Router>
   );

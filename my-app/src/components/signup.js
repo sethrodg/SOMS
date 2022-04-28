@@ -33,16 +33,18 @@ const SignUp = () => {
     registerWithEmailAndPassword(name, email, password); //When registering the position\interestedsystem is autofilled with Memeber\ N/A.
   };
   return (
-    <Grid container style={{ minHeight: '100vh' }}>
-      <Grid item xs={12} sm={6} style={{ align: 'center' }}>
-        <img src="utalogo.png" />
+    <Grid container style={{ minHeight: '90vh' }}>
+      
+      <Grid container alignItems='center' direction='column' sm={6}>
+        <img src="utalogo.png" />    
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid container item alignItems='center' direction='column' justify="space-between" xs={12} sm={6} style={{ padding: 10}}>
         <Paper sx={{ borderRadius: 10 }} elevation={10} style={paperStyle}>
-          <Grid align='center'>
+        <Grid alignItems='center' container justify='center' style={{padding: 17}}>
             <h1>Welcome to SOMS</h1>
-          </Grid>
-          <div className='row'>
+        </Grid>
+        
+        
             <input
               type="text"
               className="register__textBox"
@@ -53,6 +55,7 @@ const SignUp = () => {
               variant="outlined"
               fullWidth required
             />
+      
             <input
               type="text"
               className="register__textBox"
@@ -73,7 +76,6 @@ const SignUp = () => {
               variant="outlined"
               fullWidth required
             />
-          </div>
           <FormControlLabel
             control={
               <Checkbox
@@ -85,7 +87,9 @@ const SignUp = () => {
           />
           <Button type='Submit' color='primary' variant="contained" style={btnstyle} onClick={register} fullWidth>Register!</Button>
           {/* <Button variant="outlined" startIcon={<Google />} onClick={signInWithGoogle}>Sign Up with Google</Button> */}
+       
         </Paper>
+
       </Grid>
     </Grid>
   )

@@ -36,11 +36,11 @@ const Login = () => {
         sendPasswordReset(email);
     };
     return (
-        <Grid container style={{ minHeight: '100vh' }}>
-            <Grid item xs={12} sm={6} style={{ align: 'center' }}>
-                <img src="utalogo.png" />
+        <Grid container style={{ minHeight: '90vh' }}>
+            <Grid container alignItems='center' direction='column' sm={6}>
+                <img src="utalogo.png" />    
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid container item alignItems='center' direction='column' justify="space-between" xs={12} sm={6} style={{ padding: 10}}>
                 <Paper sx={{ borderRadius: 10 }} elevation={10} style={paperStyle}>
                     <Grid align='center'>
                         <h1>Login to SOMS</h1>
